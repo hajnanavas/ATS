@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
-  { path: 'parking', loadChildren: './parking/parking.module#ParkingModule' },
-  { path: '', redirectTo: 'parking', pathMatch: 'full' },
-  { path: '**', redirectTo: 'parking', pathMatch: 'full' }
+  { path: 'app', loadChildren: './pages/pages.module#PagesModule' },
+  { path: '', redirectTo: 'app', pathMatch: 'full' },
+  { path: '**', redirectTo: 'app', pathMatch: 'full' }
 ];
 
 @NgModule({

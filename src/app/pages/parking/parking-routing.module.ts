@@ -5,7 +5,7 @@ import { StructureComponent } from './structure/structure.component';
 
 const routes: Routes = [
   {
-    path: 'structure',
+    path: 'structures',
     component: StructureComponent,
     children: [
       { path: 'list', component: StructureListComponent, pathMatch: 'full' },
@@ -13,8 +13,8 @@ const routes: Routes = [
       { path: '**', redirectTo: 'list', pathMatch: 'full' }
     ]
   },
-  { path: '', redirectTo: 'structure', pathMatch: 'full' },
-  { path: '**', redirectTo: 'structure', pathMatch: 'full' }
+  { path: '', redirectTo: 'structures', pathMatch: 'full' },
+  { path: '**', redirectTo: 'structures', pathMatch: 'full' }
 ];
 
 @NgModule({

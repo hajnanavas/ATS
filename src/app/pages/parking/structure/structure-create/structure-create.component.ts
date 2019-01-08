@@ -10,6 +10,7 @@ export class StructureCreateComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    console.log('inside creation page');
   }
 
 }

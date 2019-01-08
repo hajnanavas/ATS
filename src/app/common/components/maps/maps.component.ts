@@ -3,11 +3,11 @@ import { Component, OnInit } from '@angular/core';
 declare let google: any;
 
 @Component({
-  selector: 'app-map',
-  templateUrl: './map.component.html',
-  styleUrls: ['./map.component.scss']
+  selector: 'app-maps',
+  templateUrl: './maps.component.html',
+  styleUrls: ['./maps.component.scss']
 })
-export class MapComponent implements OnInit {
+export class MapsComponent implements OnInit {
 
   constructor() { }
 

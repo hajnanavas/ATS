@@ -14,31 +14,32 @@
 </div>
 
 <div class='map'>
-    <div id='header'>
-        <h4>Structures</h4>
-        <div class='btnGrp'>
-          <button><i class="fas fa-sync-alt"></i></button>
-          <button><i class="fa fa-minus" aria-hidden="true"></i></button>
-          <button></button>
-        </div>
-      </div>
-    <ul class="heroes">
-      <li>
-        <span class="colorSet"></span>
-        <span class="badge">BBB</span>
-        <span>45/70</span>
-        <button class="delete">add</button>
-        <button class="delete">edit</button>
-        <button class="delete">x</button>
-      </li>
-      <li>
-          <span class="colorSet"></span>
-          <span class="badge">AAA</span>
-          <span>33/38</span>
-          <button class="delete">add</button>
-        <button class="delete">edit</button>
-          <button class="delete">x</button>
-        </li>
-        
-    </ul>
+  <div id='header'>
+    <h4>Structures</h4>
+    <div class='btnGrp'>
+      <button><i class="fas fa-sync-alt"></i></button>
+      <button><i class="fa fa-minus" aria-hidden="true"></i></button>
+      <button></button>
+    </div>
+  </div>
+  <button (click)='addStructure()'>+</button>
+  <ul class="heroes">
+    <li>
+      <span class="colorSet"></span>
+      <span class="badge">BBB</span>
+      <span>45/70</span>
+      <button class="delete">+</button>
+      <button class="delete">edit</button>
+      <button class="delete">x</button>
+    </li>
+    <li>
+      <span class="colorSet"></span>
+      <span class="badge">AAA</span>
+      <span>33/38</span>
+      <button class="delete">+</button>
+      <button class="delete">edit</button>
+      <button class="delete">x</button>
+    </li>
+
+  </ul>
 </div>

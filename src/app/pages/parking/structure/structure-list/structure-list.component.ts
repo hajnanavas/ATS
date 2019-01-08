@@ -18,4 +18,7 @@ export class StructureListComponent implements OnInit {
     var marker = new google.maps.Marker({ position: uluru, map: map });
   }
 
+  addStructure(){
+    console.log("add structure");
+  }
 }

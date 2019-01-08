@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
 @Component({
   selector: 'app-structure-create',
@@ -7,10 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StructureCreateComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dialogRef: MatDialogRef<StructureCreateComponent>) { }
 
   ngOnInit() {
     console.log('inside creation page');
+   // this.createStructure();
+  }
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 
 }

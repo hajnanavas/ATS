@@ -1,34 +1,49 @@
-<div class='listSection'>
-  <div id='header'>
-    <h4>Structures</h4>
-    <div class='btnGrp'>
-      <button mat-button-icon><mat-icon>home</mat-icon></button>
+<div class="structurePage">
+  <div id='listSection'>
+    <div id='header'>
+      <h4>Structures</h4>
+      <div class='btnGrp'>
+        <mat-icon>refresh</mat-icon>
+        <mat-icon>minimize</mat-icon>
+        <mat-icon>fullscreen</mat-icon>
+      </div>
+    </div>
+    <div class="filtr">
+        <label>Show Hidden: </label>
+        <mat-slide-toggle></mat-slide-toggle> 
+    </div>
+    <div class="content">
+      <app-maps></app-maps>
     </div>
   </div>
-  <app-maps></app-maps>
-</div>
 
-<div class='listSection'>
-  <div id='header'>
-    <h4>Structures</h4>
-    <div class='btnGrp'>
-      <button><i class="fas fa-sync-alt"></i></button>
-      <button><i class="fa fa-minus" aria-hidden="true"></i></button>
-      <button></button>
+  <div id='listSection'>
+    <div id='header'>
+      <h4>Structures</h4>
+      <div class='btnGrp'>
+        <mat-icon>refresh</mat-icon>
+        <mat-icon>minimize</mat-icon>
+        <mat-icon>fullscreen</mat-icon>
+      </div>
+    </div>
+    <div class='btn'>
+      <button class="addBtn" mat-raised-button (click)="goToAddStructure()">+</button>
+    </div>
+    <div class="filtr">
+        <label>Show Hidden: </label>
+        <mat-slide-toggle></mat-slide-toggle> 
+    </div>
+    <div class="content">
+      <ul class="structure">
+        <li *ngFor="let item of structures">
+          <span class="colorSet color-{{item.color}}"></span>
+          <span class="badge detls">{{item.structureName}} - {{item.structureType}}</span>
+          <span class="badge space">{{item.occupiedSpace}}/{{item.totalSpace}}</span>
+          <span class="delete"><button>+</button></span>
+          <span class="delete"><button>edit</button></span>
+          <span class="delete"><button>x</button></span>
+        </li>
+      </ul>
     </div>
   </div>
-  <div class='btn'>
-      <button  mat-raised-button (click)="goToAddStructure()">+</button>
-  </div>
-  <ul class="structure">
-    <li *ngFor="let item of structures">
-      <span class="colorSet color-{{item.color}}"></span>
-      <span class="badge detls">{{item.structureName}} - {{item.structureType}}</span>
-      <span class="badge">{{item.occupiedSpace}}/{{item.totalSpace}}</span>
-      <span class="delete"><button>+</button></span>
-      <span class="delete"><button>edit</button></span>
-      <span class="delete"><button>x</button></span>
-    </li>
-
-  </ul>
 </div>

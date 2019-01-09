@@ -9,6 +9,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MapsComponent } from 'src/app/common/components/maps/maps.component';
 import { MatIconModule } from '@angular/material/icon';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { MatIconModule } from '@angular/material/icon';
     MatDialogModule,
     MatFormFieldModule,
     FormsModule,
-    MatIconModule
+    MatIconModule,
+    MatSlideToggleModule
   ],
   entryComponents: [StructureCreateComponent]
 })

@@ -4,7 +4,7 @@
     width: 100%;
     position:fixed;
 }
-.structurePage #listSection{
+.structurePage #list-sections{
     width:45%;
     margin-left:3%;
     float:left;
@@ -12,11 +12,9 @@
     margin-top:5%;
     height: 62%;
 }
-
-.structurePage #listSection .content{
+.structurePage #list-sections .content{
     margin: 5%;
 }    
-
 #header{
     background-color: green;
     height: 8%;
@@ -32,7 +30,6 @@ h4{
     list-style-type: none;
     padding: 0;
 }
-
 .structure li {
     cursor: pointer;
     position: relative;
@@ -40,25 +37,21 @@ h4{
     background-color: white;
     margin-top: 15px;
     margin-bottom: 15px;
-    // padding: 0px 10px; 
     height: 35px;
     border-radius: 4px;
     border:1px solid rgba(60,64,67,0.15);
 }
-
 .structure li:hover {
     color: #607D8B;
     background-color: #DDD;
     left: .1em;
 }
-
 .structure li.selected:hover {
     background-color: #BBD8DC !important;
     color: white;
 }
 .colorSet{
     padding: 15px 10px;
-    // padding: 3% 2%;
     position: absolute;
     left: 0px;
     height: 6px;
@@ -74,7 +67,6 @@ h4{
     background-color: blue;
     border-right:blue;
 }
-
 .structure .badge {
     padding: 10px 0px;
     top: -7px;
@@ -82,7 +74,6 @@ h4{
     margin-right: .8em;
     border-radius: 4px 0 0 4px;
 }
-
 span {
     display: inline-block;
     border-right: 1px solid #019ed5;
@@ -112,6 +103,6 @@ span {
 .space{
     width: 10%;
 }
-.filtr{
+.content-filter{
     float:right
 }

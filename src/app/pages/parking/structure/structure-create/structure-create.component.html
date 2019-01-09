@@ -1,34 +1,78 @@
 <h1 mat-dialog-title>Add Structure</h1>
 <!-- <app-maps [structureArray]="structuresArray"></app-maps> -->
 <div mat-dialog-content>
-  <div class="mapContent">
-    <div>
+  <div class="leftData">
+    <div class='searchBox'>
 
     </div>
-    <div>
+    <div class="mapContent">
       <app-maps [structureArray]="structuresArray"></app-maps>
     </div>
 
   </div>
-  <div class="formContent">
+  <div class="rightData">
+
     <form class="createForm">
-      <mat-form-field>
-        <ul>
-          <li>
-            <label>Structure Name: </label>
-            <input matInput placeholder="Name">
-          </li>
-          <li>
-            <label>Structure Type: </label>
-            <mat-select>
-              <mat-option value="Lot">Lot
-              </mat-option>
-              <mat-option value="Space">Space
-              </mat-option>
-            </mat-select>
-          </li>
-        </ul>
-      </mat-form-field>
+      <div class='formContent'>
+        <mat-form-field>
+          <ul>
+            <li>
+              <label>Structure Name: </label>
+              <input matInput>
+            </li>
+            <li>
+              <label>Structure Type: </label>
+              <mat-select>
+                <mat-option value="Lot">Lot
+                </mat-option>
+                <mat-option value="Space">Space
+                </mat-option>
+              </mat-select>
+            </li>
+            <li>
+              <label>Description</label>
+              <input matInput>
+            </li>
+            <li>
+              <label>Abbreviated Name: </label>
+              <input matInput >
+            </li>
+            <li>
+              <label>Color</label>
+              <mat-select>
+                <mat-option value="Green">Green
+                </mat-option>
+                <mat-option value="red">Red
+                </mat-option>
+                <mat-option value="blue">Blue
+                </mat-option>
+              </mat-select>
+            </li>
+          </ul>
+        </mat-form-field>
+
+      </div>
+      <div class="availability">
+        <mat-form-field>
+          <ul>
+            <li>
+              <label>Structure Availability: </label>
+            </li>
+            <li>
+              <label>Medium When: </label>
+              <input matInput> spaces remain
+            </li>
+            <li>
+              <label>Low When:</label>
+              <input matInput> spaces remain
+            </li>
+            <li>
+              <label>Full When: </label>
+              <input matInput> spaces remain
+            </li>
+          </ul>
+        </mat-form-field>
+      </div>
     </form>
   </div>
 

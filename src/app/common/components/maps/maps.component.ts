@@ -12,9 +12,16 @@ export class MapsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    var location = { lat: -25.344, lng: 131.036 };
-    var map = new google.maps.Map(document.getElementById('map'), { zoom: 4, center: location });
-    var marker = new google.maps.Marker({ position: location, map: map });
+    
+    var myLatlng = new google.maps.LatLng(52.515595, 13.393080);
+    var mapOptions = {
+      zoom: 14,
+      center: myLatlng,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    }
+    var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+    var marker = new google.maps.Marker({ position: myLatlng, map: map });
+
   }
 
 }

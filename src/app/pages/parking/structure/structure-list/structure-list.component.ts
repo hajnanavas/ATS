@@ -33,7 +33,9 @@ export class StructureListComponent implements OnInit {
       totalSpace: 38,
       occupiedSpace: 33,
       color: 'blue',
-      status: 'not hidden'
+      status: 'not hidden',
+      latitude: 52.525595,
+      longitude: 13.393085
     },
     {
       structureName: 'Space 4',
@@ -41,7 +43,9 @@ export class StructureListComponent implements OnInit {
       totalSpace: 38,
       occupiedSpace: 33,
       color: 'green',
-      status: 'not hidden'
+      status: 'not hidden',
+      latitude: 52.505590,
+      longitude: 13.393080
     },
     {
       structureName: 'Space 5',
@@ -49,7 +53,9 @@ export class StructureListComponent implements OnInit {
       totalSpace: 38,
       occupiedSpace: 33,
       color: 'green',
-      status: 'not hidden'
+      status: 'not hidden',
+      latitude: 52.505595,
+      longitude: 13.393078
     },
     {
       structureName: 'Space 3',
@@ -57,7 +63,9 @@ export class StructureListComponent implements OnInit {
       totalSpace: 38,
       occupiedSpace: 33,
       color: 'green',
-      status: 'not hidden'
+      status: 'not hidden',
+      latitude: 52.510067,
+      longitude: 13.393085
     },
     {
       structureName: 'Space 2',
@@ -65,7 +73,9 @@ export class StructureListComponent implements OnInit {
       totalSpace: 38,
       occupiedSpace: 33,
       color: 'green',
-      status: 'not hidden'
+      status: 'not hidden',
+      latitude: 52.520067,
+      longitude: 13.393080
     }]
   }
 }

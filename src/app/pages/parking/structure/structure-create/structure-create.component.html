@@ -1,24 +1,40 @@
-<!-- <h1 mat-dialog-title>Hi {{data.name}}</h1>
-<div mat-dialog-content>
-  <p>What's your favorite animal?</p>
-  <mat-form-field>
-    <input matInput [(ngModel)]="data.animal">
-  </mat-form-field>
-</div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
-</div> -->
-
 <h1 mat-dialog-title>Add Structure</h1>
+<!-- <app-maps [structureArray]="structuresArray"></app-maps> -->
 <div mat-dialog-content>
-  <!-- <p>What's your favorite animal?</p> -->
-  <div id="map"></div>
-  <mat-form-field>
-    <input matInput [(ngModel)]="data.animal">
-  </mat-form-field>
+  <div class="mapContent">
+    <div>
+
+    </div>
+    <div>
+      <app-maps [structureArray]="structuresArray"></app-maps>
+    </div>
+
+  </div>
+  <div class="formContent">
+    <form class="createForm">
+      <mat-form-field>
+        <ul>
+          <li>
+            <label>Structure Name: </label>
+            <input matInput placeholder="Name">
+          </li>
+          <li>
+            <label>Structure Type: </label>
+            <mat-select>
+              <mat-option value="Lot">Lot
+              </mat-option>
+              <mat-option value="Space">Space
+              </mat-option>
+            </mat-select>
+          </li>
+        </ul>
+      </mat-form-field>
+    </form>
+  </div>
+
+
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
-</div> 
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="asa" cdkFocusInitial>Submit</button>
+</div>

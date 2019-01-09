@@ -5,11 +5,8 @@ import { ParkingRoutingModule } from './parking-routing.module';
 import { StructureListComponent } from './structure/structure-list/structure-list.component';
 import { StructureComponent } from './structure/structure.component';
 import { StructureCreateComponent } from './structure/structure-create/structure-create.component';
-import { MatDialogModule } from '@angular/material/dialog';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MapsComponent } from 'src/app/common/components/maps/maps.component';
-import { MatIconModule } from '@angular/material/icon';
-import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatDialogModule, MatFormFieldModule, MatIconModule, MatSlideToggleModule, MatInputModule, MatSelectModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -25,7 +22,9 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     MatFormFieldModule,
     FormsModule,
     MatIconModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatInputModule,
+    MatSelectModule
   ],
   entryComponents: [StructureCreateComponent]
 })

@@ -15,20 +15,18 @@ export class MapsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log('structure list is', this.structureArray);
-    this.structureArray.forEach(item => {
-      var myLatlng = new google.maps.LatLng(item.latitude, item.longitude);
-      var mapOptions = {
-        zoom: 14,
-        center: myLatlng,
-        //mapTypeId: 'satellite'
-        mapTypeId: google.maps.MapTypeId.ROADMAP//for roadMap
-      }
-      var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-      var marker = new google.maps.Marker({ position: myLatlng, map: map });
-    })
-
-
+    console.log('sructure passed is',this.structureArray);
+      this.structureArray.forEach(item => {
+        var myLatlng = new google.maps.LatLng(item.latitude, item.longitude);
+        var mapOptions = {
+          zoom: 14,
+          center: myLatlng,
+          //mapTypeId: 'satellite'
+          mapTypeId: google.maps.MapTypeId.ROADMAP//for roadMap
+        }
+        var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+        var marker = new google.maps.Marker({ position: myLatlng, map: map });
+      })
   }
 
 }

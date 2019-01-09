@@ -9,7 +9,6 @@ const routes: Routes = [
     component: StructureComponent,
     children: [
       { path: 'list', component: StructureListComponent },
-      // { path: 'create', component: StructureCreateComponent },
       { path: '', redirectTo: 'list', pathMatch: 'full' },
       { path: '**', redirectTo: 'list', pathMatch: 'full' }
     ]

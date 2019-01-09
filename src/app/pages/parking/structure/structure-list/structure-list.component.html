@@ -9,8 +9,8 @@
       </div>
     </div>
     <div class="content-filter">
-        <label>Show Hidden: </label>
-        <mat-slide-toggle></mat-slide-toggle> 
+      <label>Show Hidden: </label>
+      <mat-slide-toggle></mat-slide-toggle>
     </div>
     <div class="content">
       <app-maps></app-maps>
@@ -30,18 +30,18 @@
       <button class="addBtn" mat-raised-button (click)="goToAddStructure()">+</button>
     </div>
     <div class="content-filter">
-        <label>Show Hidden: </label>
-        <mat-slide-toggle></mat-slide-toggle> 
+      <label>Show Hidden: </label>
+      <mat-slide-toggle></mat-slide-toggle>
     </div>
     <div class="content">
       <ul class="structure">
         <li *ngFor="let item of structures">
           <span class="colorSet color-{{item.color}}"></span>
-          <span class="badge detls">{{item.structureName}} - {{item.structureType}}</span>
+          <span class="badge detls"><a>{{item.structureName}} - {{item.structureType}}</a></span>
           <span class="badge space">{{item.occupiedSpace}}/{{item.totalSpace}}</span>
-          <span class="delete"><button>+</button></span>
-          <span class="delete"><button>edit</button></span>
-          <span class="delete"><button>x</button></span>
+          <span class="delete"><mat-icon>add</mat-icon></span>
+          <span class="delete"><mat-icon>settings</mat-icon></span>
+          <span class="delete no-line"><mat-icon>fullscreen</mat-icon></span>
         </li>
       </ul>
     </div>

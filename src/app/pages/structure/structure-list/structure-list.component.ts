@@ -14,7 +14,6 @@ export class StructureListComponent implements OnInit {
   constructor(public dialog: MatDialog) { }
 
   ngOnInit() {
-
     this.listStructure();
   }
 

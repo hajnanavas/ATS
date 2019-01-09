@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 declare let google: any;
 
@@ -7,20 +7,27 @@ declare let google: any;
   templateUrl: './maps.component.html',
   styleUrls: ['./maps.component.scss']
 })
+
 export class MapsComponent implements OnInit {
+
+  @Input() structureArray: any[];
 
   constructor() { }
 
   ngOnInit() {
-    
-    var myLatlng = new google.maps.LatLng(52.515595, 13.393080);
-    var mapOptions = {
-      zoom: 14,
-      center: myLatlng,
-      mapTypeId: google.maps.MapTypeId.ROADMAP
-    }
-    var map = new google.maps.Map(document.getElementById("map"), mapOptions);
-    var marker = new google.maps.Marker({ position: myLatlng, map: map });
+    console.log('structure list is', this.structureArray);
+    this.structureArray.forEach(item => {
+      var myLatlng = new google.maps.LatLng(item.latitude, item.longitude);
+      var mapOptions = {
+        zoom: 14,
+        center: myLatlng,
+        //mapTypeId: 'satellite'
+        mapTypeId: google.maps.MapTypeId.ROADMAP//for roadMap
+      }
+      var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+      var marker = new google.maps.Marker({ position: myLatlng, map: map });
+    })
+
 
   }
 

@@ -15,7 +15,10 @@ export class MapsComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log('sructure passed is',this.structureArray);
+    this.getMap();
+  }
+  getMap() {
+    if (this.structureArray.length != 0)
       this.structureArray.forEach(item => {
         var myLatlng = new google.maps.LatLng(item.latitude, item.longitude);
         var mapOptions = {
@@ -27,6 +30,11 @@ export class MapsComponent implements OnInit {
         var map = new google.maps.Map(document.getElementById("map"), mapOptions);
         var marker = new google.maps.Marker({ position: myLatlng, map: map });
       })
+    else
+      var maps = new google.maps.Map(document.getElementById('map'), {
+        center: { lat: -34.397, lng: 150.644 },
+        zoom: 8
+      });
+    // var marker = new google.maps.Marker({ position: { lat: -34.397, lng: 150.644 }, map: maps });
   }
-
 }

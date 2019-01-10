@@ -5,17 +5,20 @@ import { StructureRoutingModule } from './structure-routing.module';
 import { StructureCreateComponent } from './structure-create/structure-create.component';
 import { StructureListComponent } from './structure-list/structure-list.component';
 import { MapsComponent } from 'src/app/shared/components/maps/maps.component';
-import { MatDialogModule, MatFormFieldModule, MatIconModule, MatSlideToggleModule, MatInputModule, MatSelectModule } from '@angular/material';
-
+import { MatDialogModule, MatFormFieldModule, MatIconModule, MatSlideToggleModule } from '@angular/material';
+import { MatInputModule, MatSelectModule, MatAutocompleteModule } from '@angular/material';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [StructureCreateComponent, StructureListComponent, MapsComponent],
+  declarations: [StructureCreateComponent, StructureListComponent,MapsComponent],
   imports: [
     CommonModule,
     StructureRoutingModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatIconModule, MatSlideToggleModule, MatInputModule, MatSelectModule
+    MatIconModule, MatSlideToggleModule, MatInputModule, MatSelectModule,
+    MatAutocompleteModule,
+    FormsModule, ReactiveFormsModule 
   ],
   entryComponents: [StructureCreateComponent]
 })

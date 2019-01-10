@@ -18,12 +18,11 @@ export class StructureListComponent implements OnInit {
 
   ngOnInit() {
     this.structures = this.structureService.getStructureList();
-    console.log('array', this.structures)
   }
 
   goToAddStructure() {
     const dialogRef = this.dialog.open(StructureCreateComponent, {
-      width: '850px',
+      width: '1000px',
     });
   }
 

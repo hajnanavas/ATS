@@ -5,11 +5,15 @@
 }
 .searchBox{
     border:1px solid rgba(60,64,67,0.15);
-    height: 10%;
     margin-bottom:5%;
+    border-radius: 4px;
+}
+.searchBox .mat-form-field {
+    display: block;
 }
 .mapContent{
     border:1px solid rgba(60,64,67,0.15);
+    border-radius: 4px;
 }
 .rightData{
     width:49%;
@@ -18,10 +22,55 @@
 .formContent{
     border:1px solid rgba(60,64,67,0.15);
     margin-bottom:5%;
+    border-radius: 4px;
 }
 .availability{
     border:1px solid rgba(60,64,67,0.15);
+    border-radius: 4px;
 }
 ul{
     list-style-type: none;
+}
+
+.formlist {
+	height: 50px;
+}
+.mat-form-field-appearance-legacy .mat-form-field-wrapper {
+    padding-bottom: 0.8em !important;
+}
+.setWidth{
+    width: 130px;
+    display: inline-block;
+}
+
+.formlabel {
+    padding-top: 8px;
+    margin-right: 10px;
+   
+}
+.searchBox .mat-form-field {
+    display: inline-block;
+}
+.searchBox .mat-form-field-infix {
+    width: 370px;
+}
+.setSpan {
+    width: 100px;
+    display: inline-block;
+}
+.butn-green{
+    background-color: green;
+    border-radius: 4px;
+    height: 30px;
+    border-color: green;
+    color: white;
+    margin:5px;
+}
+.btn{
+    border-radius: 4px;
+    height: 30px;
+    margin:5px;
+}
+.buttn{
+    float:right
 }

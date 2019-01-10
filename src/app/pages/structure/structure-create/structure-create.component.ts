@@ -3,7 +3,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { StructureService } from 'src/app/shared/services/structure-service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { map, startWith } from 'rxjs/operators';
-import { formArrayNameProvider } from '@angular/forms/src/directives/reactive_directives/form_group_name';
+
+declare let google: any;
 
 @Component({
   selector: 'app-structure-create',
@@ -24,6 +25,11 @@ export class StructureCreateComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    var maps = new google.maps.Map(document.getElementById('mapCase'), {
+      center: { lat: -34.397, lng: 150.644 },
+      zoom: 8
+    });
 
     this.createForm = new FormGroup({
       structureName: new FormControl('', []),
@@ -106,4 +112,5 @@ export class StructureCreateComponent implements OnInit {
     this.latitude = item.geometry.location.lat;
     this.longitude = item.geometry.location.lng;
   }
+
 }

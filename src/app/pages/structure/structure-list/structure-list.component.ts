@@ -25,5 +25,7 @@ export class StructureListComponent implements OnInit {
       width: '1000px',
     });
   }
-
+  onChange(value){
+    this.structures = (value.checked === false) ?this.structureService.getStructureList():this.structureService.filteredStructureList();
+  }
 }

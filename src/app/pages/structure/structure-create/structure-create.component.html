@@ -1,29 +1,27 @@
 <h1 mat-dialog-title>Add Structure</h1>
 <div mat-dialog-content>
-  <div class="leftData">
-    <div class='searchBox'>
-      <div class="form-group has-search">
-        <mat-icon>search</mat-icon>
-        <mat-form-field>
-          <input matInput [matAutocomplete]="auto">
-
-          <mat-autocomplete #auto="matAutocomplete">
-            <mat-option>
-              <span>Name</span> |
-              <small>Population:</small>
-            </mat-option>
-          </mat-autocomplete>
-        </mat-form-field>
+  <form [formGroup]="createForm">
+    <div class="leftData">
+      <div class='searchBox'>
+        <div class="form-group has-search">
+          <mat-icon>search</mat-icon>
+          <mat-form-field>
+            <input type="text" aria-label="loctn" matInput formControlName="location" [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+              <mat-option *ngFor="let loc of filteredLocations | async" [value]="loc.name" (onSelectionChange)="onLocationSelect(loc)">
+                <span>{{loc.name}}</span> |
+                <small>{{loc.vicinity}}</small>
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+        </div>
       </div>
-    </div>
-    <div class="mapContent">
-      <app-maps [structureArray]="structuresArray"></app-maps>
-    </div>
+      <div class="mapContent">
+        <app-maps [structureArray]="structuresArray"></app-maps>
+      </div>
 
-  </div>
-  <div class="rightData">
-
-    <form [formGroup]="createForm">
+    </div>
+    <div class="rightData">
       <div class='formContent'>
 
         <ul class="formBlk">
@@ -67,7 +65,7 @@
           <li class="formlist">
             <label class="formlabel"><span class="setWidth">Status</span> :</label>
             <mat-form-field>
-              <mat-select formControlName="status">
+              <mat-select formControlName="status" >
                 <mat-option value="active">Active
                 </mat-option>
                 <mat-option value="inactive">Inactive
@@ -89,9 +87,7 @@
           </li>
           <li class="formlist">
             <label class="formlabel"><span class="setWidth">Hidden</span> : </label>
-            <mat-form-field>
-              <input matInput formControlName="hidden">
-            </mat-form-field>
+            <mat-slide-toggle formControlName="hidden"></mat-slide-toggle>
           </li>
           <li class="formlist">
             <label class="formlabel"><span class="setWidth">Description</span> :</label>
@@ -115,33 +111,33 @@
           <li class="formlist">
             <label class="formlabel"><span class="setSpan">Medium When </span>: </label>
             <mat-form-field>
-              <input matInput>
+              <input matInput formControlName="medium">
             </mat-form-field>
             <label>spaces remain</label>
           </li>
           <li class="formlist">
             <label class="formlabel"><span class="setSpan">Low When</span> :</label>
             <mat-form-field>
-              <input matInput>
+              <input matInput formControlName="low">
             </mat-form-field>
             <label>spaces remain</label>
           </li>
           <li class="formlist">
             <label class="formlabel"><span class="setSpan">Full When </span>: </label>
             <mat-form-field>
-              <input matInput>
+              <input matInput formControlName="full">
             </mat-form-field>
             <label>spaces remain</label>
           </li>
         </ul>
       </div>
-    </form>
-  </div>
+    </div>
+  </form>
 
 
 </div>
 <div mat-dialog-actions class="buttn">
-  <button mat-button class="btn"[mat-dialog-close]="asa" cdkFocusInitial>Cancel</button>
-  <button mat-button class="butn-green"(click)="onNoClick()">Save Structure</button>
+  <button mat-button class="btn" [mat-dialog-close]="asa" cdkFocusInitial>Cancel</button>
+  <button mat-button class="butn-green" (click)="onNoClick()">Save Structure</button>
 
 </div>

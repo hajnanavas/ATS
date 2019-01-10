@@ -6,7 +6,7 @@
         <div class="form-group has-search">
           <mat-icon>search</mat-icon>
           <mat-form-field>
-            <input type="text" aria-label="loctn" matInput formControlName="location" [matAutocomplete]="auto">
+            <input type="text" aria-label="loctn" matInput formControlName="location" placeholder="Search location" [matAutocomplete]="auto">
             <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
               <mat-option *ngFor="let loc of filteredLocations | async" [value]="loc.name" (onSelectionChange)="onLocationSelect(loc)">
                 <span>{{loc.name}}</span> |

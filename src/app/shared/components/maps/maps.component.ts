@@ -30,11 +30,12 @@ export class MapsComponent implements OnInit {
         var map = new google.maps.Map(document.getElementById("map"), mapOptions);
         var marker = new google.maps.Marker({ position: myLatlng, map: map });
       })
-    else
+    else {
       var maps = new google.maps.Map(document.getElementById('map'), {
         center: { lat: -34.397, lng: 150.644 },
         zoom: 8
       });
-    // var marker = new google.maps.Marker({ position: { lat: -34.397, lng: 150.644 }, map: maps });
+      // var marker = new google.maps.Marker({ position: { lat: -34.397, lng: 150.644 }, map: maps });}
+    }
   }
 }

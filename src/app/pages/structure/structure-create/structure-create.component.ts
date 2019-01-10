@@ -1,5 +1,6 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { StructureService } from 'src/app/shared/services/structure-service';
 // import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -10,12 +11,16 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 export class StructureCreateComponent implements OnInit {
 
   structuresArray: any = [];
+  structureCreateSubscription: any;
 
-  constructor(public dialogRef: MatDialogRef<StructureCreateComponent>) { }
+  constructor(public dialogRef: MatDialogRef<StructureCreateComponent>, private structureService: StructureService) {
+  }
 
   ngOnInit() {
     console.log('inside creation page');
-    this.structuresArray = [{
+  }
+  onNoClick(): void {
+    this.structureService.updateStructureList({
       structureName: 'ATS State College Parking Lot',
       structureType: 'Lot',
       totalSpace: 38,
@@ -24,10 +29,8 @@ export class StructureCreateComponent implements OnInit {
       status: 'not hidden',
       latitude: 52.525595,
       longitude: 13.393085
-    }];
-  }
-  onNoClick(): void {
+    });
     this.dialogRef.close();
   }
-
+  
 }

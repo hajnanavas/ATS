@@ -4,7 +4,11 @@ export interface Structure {
     totalSpace: number,
     occupiedSpace: 33,
     color: string,
-    status: boolean,
+    status: string,
     latitude: any,
-    longitude: any
+    longitude: any,
+    hidden: boolean,
+    low: number,
+    medium: number,
+    full: number
 }

@@ -6,6 +6,7 @@ import { StructureCreateComponent } from './structure-create/structure-create.co
 import { StructureListComponent } from './structure-list/structure-list.component';
 import { MapsComponent } from 'src/app/shared/components/maps/maps.component';
 import { MatDialogModule, MatFormFieldModule, MatIconModule, MatSlideToggleModule, MatInputModule, MatSelectModule } from '@angular/material';
+import { StructureService } from 'src/app/shared/services/structure-service';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { MatDialogModule, MatFormFieldModule, MatIconModule, MatSlideToggleModul
     MatFormFieldModule,
     MatIconModule, MatSlideToggleModule, MatInputModule, MatSelectModule
   ],
-  entryComponents: [StructureCreateComponent]
+  entryComponents: [StructureCreateComponent],
+  providers:[StructureService]
 })
 export class StructureModule { }

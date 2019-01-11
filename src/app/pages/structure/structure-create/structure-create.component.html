@@ -2,9 +2,9 @@
 <div mat-dialog-content>
   <form [formGroup]="createForm">
     <div class="leftData">
-      <div class='searchBox'>
+      <!--<div class='searchBox'>
         <div class="form-group has-search">
-          <mat-icon>search</mat-icon>
+           <mat-icon>search</mat-icon>
           <mat-form-field>
             <input type="text" aria-label="loctn" matInput formControlName="location" placeholder="Search location" [matAutocomplete]="auto">
             <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
@@ -16,9 +16,9 @@
           </mat-form-field>
         </div>
       </div>
-      <div class="mapContent">
+      <div class="mapContent"> -->
         <app-maps [structureArray]="structuresArray" [mapPage]='mapPage'></app-maps>
-      </div>
+      <!-- </div> -->
 
     </div>
     <div class="rightData">

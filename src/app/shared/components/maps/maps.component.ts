@@ -1,4 +1,6 @@
 import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
+import { MapService, Map } from '../../services/map.service';
+import { NgZone } from '@angular/core';
 
 declare let google: any;
 
@@ -12,8 +14,10 @@ export class MapsComponent implements OnInit, AfterViewInit {
 
   @Input() structureArray: any[];
   @Input() mapPage: string;
+  latitude: any;
+  longitude: any;
 
-  constructor() { }
+  constructor(private mapService: MapService, private ngZone: NgZone) { }
 
   ngOnInit() {
   }
@@ -25,47 +29,7 @@ export class MapsComponent implements OnInit, AfterViewInit {
   getMap() {
 
     if (this.mapPage == 'list') {
-
-      var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 10,
-        center: new google.maps.LatLng(-33.92, 151.25),
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-      });
-      var infowindow = new google.maps.InfoWindow();
-      var marker, i;
-
-      this.structureArray.forEach(item => {
-        var structureContent = `<div>
-        <h3 id="firstHeading" class="firstHeading">${item.structureName} ${item.structureType} - Est</h3><br>
-        <h4>${item.structureType}. ${item.totalSpace - item.occupiedSpace} of ${item.totalSpace} available</h4><br>
-        <mat-progress-spinner
-        class="example-margin"
-        color="primary"
-        value=${(item.occupiedSpace / item.totalSpace) * 100}>
-    </mat-progress-spinner><br>
-    <p>${(item.occupiedSpace / item.totalSpace) * 100} %</p><br>
-        <p>${item.occupiedSpace} of ${item.totalSpace} Spots Occupied</p>
-        <div class='linkGrp'><a>View Structure</a><br>
-        <a>Make Adjustment</a><br>
-        <a>View Occupany Report</a></div>
-        </div>`
-
-        marker = new google.maps.Marker({
-          position: new google.maps.LatLng(item.latitude, item.longitude),
-          map: map
-        });
-
-        google.maps.event.addListener(marker, 'click', (function (marker, i) {
-          return function () {
-
-            infowindow.close(map, marker);
-            infowindow = new google.maps.InfoWindow({
-              content: structureContent
-            });
-            infowindow.open(map, marker);
-          }
-        })(marker, i));
-      });
+      this.mapService.plotLocation(this.structureArray);
     }
     else {
       var maps = new google.maps.Map(document.getElementById('mapCase'), {
@@ -73,7 +37,14 @@ export class MapsComponent implements OnInit, AfterViewInit {
         zoom: 8,
         mapTypeId: 'satellite'
       });
-      // var marker = new google.maps.Marker({ position: { lat: -34.397, lng: 150.644 }, map: maps });}
+      var input = document.getElementById('pac-input');
+      const autocomplete = new google.maps.places.Autocomplete(input, { types: ["address"] });
+      autocomplete.addListener("place_changed", () => {
+        this.ngZone.run(() => {
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+          this.mapService.setLocation(place.geometry.location.lat(), place.geometry.location.lng());
+        });
+      });
     }
 
   }

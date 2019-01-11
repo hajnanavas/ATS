@@ -3,6 +3,7 @@ import { MatDialogRef } from '@angular/material';
 import { StructureService } from 'src/app/shared/services/structure-service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { map, startWith } from 'rxjs/operators';
+import { MapService } from 'src/app/shared/services/map.service';
 
 @Component({
   selector: 'app-structure-create',
@@ -16,11 +17,12 @@ export class StructureCreateComponent implements OnInit {
   private createForm: FormGroup;
   locations: any[];
   filteredLocations: any = [];
-  latitude: any;
-  longitude: any;
+  // latitude: any;
+  // longitude: any;
+  latLong: any = [];
   mapPage: string;
 
-  constructor(public dialogRef: MatDialogRef<StructureCreateComponent>, private structureService: StructureService) {
+  constructor(public dialogRef: MatDialogRef<StructureCreateComponent>, private structureService: StructureService, private mapService: MapService) {
   }
 
   ngOnInit() {
@@ -41,13 +43,14 @@ export class StructureCreateComponent implements OnInit {
       low: new FormControl(),
       full: new FormControl()
     });
-    this.mapPage='create';
+    this.mapPage = 'create';
     this.getLocation();
     this.changeLocation();
 
   }
 
   onNoClick(): void {
+    this.latLong = this.mapService.getLocation();
     this.structureService.updateStructureList({
       structureName: this.createForm.controls.structureName.value,
       structureType: this.createForm.controls.structureType.value,
@@ -56,8 +59,8 @@ export class StructureCreateComponent implements OnInit {
       color: this.createForm.controls.color.value,
       status: this.createForm.controls.status.value,
       hidden: this.createForm.controls.hidden.value,
-      latitude: this.latitude,
-      longitude: this.longitude,
+      latitude: this.latLong[0].lat,
+      longitude: this.latLong[0].lng,
       low: this.createForm.controls.low.value,
       medium: this.createForm.controls.medium.value,
       full: this.createForm.controls.full.value

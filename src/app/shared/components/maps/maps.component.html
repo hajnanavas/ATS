@@ -1,2 +1,11 @@
 <div *ngIf="mapPage == 'list'" id='map'></div>
-<div  *ngIf="mapPage == 'create'" id='mapCase'></div>
+<div *ngIf="mapPage == 'create'">
+    <div class='searchBox'>
+        <div class="form-group has-search">
+            <input id="pac-input" matInput class="controls" type="text" placeholder="Search Locations">
+        </div>
+    </div>
+    <div class="mapContent">
+        <div id='mapCase'></div>
+    </div>
+</div>

@@ -1,11 +1,16 @@
 #map {
-    width: 100%;
-    height: 500px;
-    background-color: white;
-  }
-  #mapCase {
-    width: 100%;
-    height: 500px;
-    background-color: white;
-  }
-  
+  width: 100%;
+  height: 500px;
+  background-color: white;
+}
+#mapCase {
+  width: 100%;
+  height: 500px;
+  background-color: white;
+}
+.example-margin {
+  margin: 0 10px;
+}
+.mat-progress-spinner svg {
+  transform: rotate(180deg);
+}

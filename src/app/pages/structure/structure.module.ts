@@ -8,6 +8,7 @@ import { MapsComponent } from 'src/app/shared/components/maps/maps.component';
 import { MatDialogModule, MatFormFieldModule, MatIconModule, MatSlideToggleModule } from '@angular/material';
 import { MatInputModule, MatSelectModule, MatAutocompleteModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { StructureService } from 'src/app/shared/services/structure-service';
 
 @NgModule({
   declarations: [StructureCreateComponent, StructureListComponent,MapsComponent],
@@ -20,6 +21,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatAutocompleteModule,
     FormsModule, ReactiveFormsModule 
   ],
-  entryComponents: [StructureCreateComponent]
+  entryComponents: [StructureCreateComponent],
+  providers: [StructureService]
 })
 export class StructureModule { }

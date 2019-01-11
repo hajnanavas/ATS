@@ -31,30 +31,37 @@ export class MapsComponent implements OnInit, AfterViewInit {
         center: new google.maps.LatLng(-33.92, 151.25),
         mapTypeId: google.maps.MapTypeId.ROADMAP
       });
-
+      var infowindow = new google.maps.InfoWindow();
       var marker, i;
 
       this.structureArray.forEach(item => {
-        var structureContent=`<div>
+        var structureContent = `<div>
         <h3 id="firstHeading" class="firstHeading">${item.structureName} ${item.structureType} - Est</h3><br>
-        <h4>${item.structureType}. ${item.totalSpace-item.occupiedSpace} of ${item.totalSpace} available<h4><br>
-    
+        <h4>${item.structureType}. ${item.totalSpace - item.occupiedSpace} of ${item.totalSpace} available</h4><br>
+        <mat-progress-spinner
+        class="example-margin"
+        color="primary"
+        value=${(item.occupiedSpace / item.totalSpace) * 100}>
+    </mat-progress-spinner><br>
+    <p>${(item.occupiedSpace / item.totalSpace) * 100} %</p><br>
         <p>${item.occupiedSpace} of ${item.totalSpace} Spots Occupied</p>
         <div class='linkGrp'><a>View Structure</a><br>
         <a>Make Adjustment</a><br>
         <a>View Occupany Report</a></div>
         </div>`
-        var infowindow = new google.maps.InfoWindow({
-          content: structureContent
-        });
+
         marker = new google.maps.Marker({
           position: new google.maps.LatLng(item.latitude, item.longitude),
           map: map
         });
-
+      
         google.maps.event.addListener(marker, 'click', (function (marker, i) {
           return function () {
-            //infowindow.setContent(item.structureName);
+
+            infowindow.close(map, marker);
+            infowindow = new google.maps.InfoWindow({
+              content: structureContent
+            });
             infowindow.open(map, marker);
           }
         })(marker, i));

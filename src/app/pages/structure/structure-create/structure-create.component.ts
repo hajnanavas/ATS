@@ -17,8 +17,6 @@ export class StructureCreateComponent implements OnInit {
   private createForm: FormGroup;
   locations: any[];
   filteredLocations: any = [];
-  // latitude: any;
-  // longitude: any;
   latLong: any = [];
   mapPage: string;
 
@@ -105,10 +103,6 @@ export class StructureCreateComponent implements OnInit {
   _filterLocations(value: string) {
     const filterValue = value.toLowerCase();
     return this.locations.filter(item => item.name.toLowerCase().indexOf(filterValue) === 0);
-  }
-  onLocationSelect(item) {
-    this.latitude = item.geometry.location.lat;
-    this.longitude = item.geometry.location.lng;
   }
 
 }

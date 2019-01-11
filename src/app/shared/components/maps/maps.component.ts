@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { MapService, Map } from '../../services/map.service';
 import { NgZone } from '@angular/core';
+import { StructureService } from '../../services/structure-service';
 
 declare let google: any;
 
@@ -12,14 +13,17 @@ declare let google: any;
 
 export class MapsComponent implements OnInit, AfterViewInit {
 
-  @Input() structureArray: any[];
   @Input() mapPage: string;
+
+  structureArray: any[];
   latitude: any;
   longitude: any;
+  place: any;
 
-  constructor(private mapService: MapService, private ngZone: NgZone) { }
+  constructor(private mapService: MapService, private ngZone: NgZone, private structureService: StructureService) { }
 
   ngOnInit() {
+    this.structureArray = this.structureService.getStructureList()
   }
 
   ngAfterViewInit() {
@@ -41,11 +45,16 @@ export class MapsComponent implements OnInit, AfterViewInit {
       const autocomplete = new google.maps.places.Autocomplete(input, { types: ["address"] });
       autocomplete.addListener("place_changed", () => {
         this.ngZone.run(() => {
-          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-          this.mapService.setLocation(place.geometry.location.lat(), place.geometry.location.lng());
+          this.place = autocomplete.getPlace();
+          this.mapService.setLocation(this.place.geometry.location.lat(), this.place.geometry.location.lng());
         });
       });
     }
 
+  }
+
+  onChange(value) {
+    this.structureArray = (value.checked === false) ? this.structureService.getStructureList() : this.structureService.filteredStructureList();
+    this.mapService.plotLocation(this.structureArray);
   }
 }

@@ -1,10 +1,8 @@
-import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { Component, OnInit } from '@angular/core';
+import { MatDialogRef } from '@angular/material';
 import { StructureService } from 'src/app/shared/services/structure-service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { map, startWith } from 'rxjs/operators';
-
-declare let google: any;
 
 @Component({
   selector: 'app-structure-create',
@@ -20,16 +18,12 @@ export class StructureCreateComponent implements OnInit {
   filteredLocations: any = [];
   latitude: any;
   longitude: any;
+  mapPage: string;
 
   constructor(public dialogRef: MatDialogRef<StructureCreateComponent>, private structureService: StructureService) {
   }
 
   ngOnInit() {
-
-    var maps = new google.maps.Map(document.getElementById('mapCase'), {
-      center: { lat: -34.397, lng: 150.644 },
-      zoom: 8
-    });
 
     this.createForm = new FormGroup({
       structureName: new FormControl('', []),
@@ -47,11 +41,12 @@ export class StructureCreateComponent implements OnInit {
       low: new FormControl(),
       full: new FormControl()
     });
-
+    this.mapPage='create';
     this.getLocation();
     this.changeLocation();
 
   }
+
   onNoClick(): void {
     this.structureService.updateStructureList({
       structureName: this.createForm.controls.structureName.value,

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog } from '@angular/material';
 import { StructureCreateComponent } from '../structure-create/structure-create.component';
 import { StructureService } from 'src/app/shared/services/structure-service';
 import { Structure } from 'src/app/shared/services/structure';
@@ -12,12 +12,14 @@ import { Structure } from 'src/app/shared/services/structure';
 export class StructureListComponent implements OnInit {
 
   structures: Structure[];
+  mapPage: string;
 
   constructor(public dialog: MatDialog, private structureService: StructureService) {
   }
 
   ngOnInit() {
     this.structures = this.structureService.getStructureList();
+    this.mapPage = 'list';
   }
 
   goToAddStructure() {
@@ -25,7 +27,7 @@ export class StructureListComponent implements OnInit {
       width: '1000px',
     });
   }
-  onChange(value){
-    this.structures = (value.checked === false) ?this.structureService.getStructureList():this.structureService.filteredStructureList();
+  onChange(value) {
+    this.structures = (value.checked === false) ? this.structureService.getStructureList() : this.structureService.filteredStructureList();
   }
 }

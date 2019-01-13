@@ -41,13 +41,25 @@ export class MapsComponent implements OnInit, AfterViewInit {
         zoom: 8,
         mapTypeId: 'satellite'
       });
+      var markers = new google.maps.Marker({
+        position: { lat: -34.397, lng: 150.644 },
+        title: 'Hello World'
+    });
+    
+    
+    
       var input = document.getElementById('pac-input');
       const autocomplete = new google.maps.places.Autocomplete(input, { types: ["address"] });
       autocomplete.addListener("place_changed", () => {
-        this.ngZone.run(() => {
+       // this.ngZone.run(() => {
           this.place = autocomplete.getPlace();
           this.mapService.setLocation(this.place.geometry.location.lat(), this.place.geometry.location.lng());
+          var markers = new google.maps.Marker({
+            position: { lat: this.place.geometry.location.lat(), lng: this.place.geometry.location.lng() },
+            title: 'Hello World'
         });
+        markers.setMap(maps);
+      //  });
       });
     }
 

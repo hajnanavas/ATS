@@ -3,6 +3,8 @@
     height:100%;
     width: 100%;
     position:fixed;
+    top: 0%;
+    left: 0%;
 }
 .structurePage #list-sections{
     width:45%;
@@ -107,6 +109,10 @@ span {
 .addBtn{
     height: 25px;
     cursor: pointer;
+    border-color: green;
+    color: green;
+    border-width: 1px;
+    border-radius: 5px;
 }
 .detls{
     width:60%;

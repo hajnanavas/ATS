@@ -62,3 +62,19 @@ h4{
   font-weight: normal;
   font-size: small;
 }
+
+.progress-bar{
+  margin-top:30%;
+  margin-left:10%;
+  height:45px;
+  width:90px;
+  border-radius: 90px 90px 0 0;
+  -moz-border-radius: 90px 90px 0 0;
+  -webkit-border-radius: 90px 90px 0 0;
+  border: 5px solid red;
+  border-bottom:none;
+}
+.percntg{ 
+text-align:center;
+padding:20px 0;
+}

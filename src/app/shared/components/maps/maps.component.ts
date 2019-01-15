@@ -1,8 +1,6 @@
 import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
-import { MapService, Map } from '../../services/map.service';
+import { MapService } from '../../services/map.service';
 import { StructureService } from '../../services/structure-service';
-
-declare let google: any;
 
 @Component({
   selector: 'app-maps',

@@ -1,5 +1,4 @@
 import { Injectable, NgZone } from '@angular/core';
-import { MatChipSelectionChange } from '@angular/material';
 
 export interface Map {
   lat: any,
@@ -16,7 +15,7 @@ export class MapService {
   mapContent: Map[];
   place: any;
 
-  constructor(private ngZone: NgZone) { }
+  constructor() { }
 
   plotLocation(structureArray) {
     var map = new google.maps.Map(document.getElementById('map'), {
@@ -31,12 +30,9 @@ export class MapService {
       var structureContent = `<div>
       <h3 id="firstHeading" class="firstHeading">${item.structureName} ${item.structureType} - Est</h3><br>
       <h4>${item.structureType}. ${item.totalSpace - item.occupiedSpace} of ${item.totalSpace} available</h4><br>
-      <mat-progress-spinner
-      class="example-margin"
-      color="primary"
-      value=${(item.occupiedSpace / item.totalSpace) * 100}>
-  </mat-progress-spinner><br>
-  <p>${(item.occupiedSpace / item.totalSpace) * 100} %</p><br>
+      <div class='progress-bar'>
+      <p class='percntg'>${(item.occupiedSpace / item.totalSpace * 100).toFixed(2)} %</p>
+      </div>
       <p>${item.occupiedSpace} of ${item.totalSpace} Spots Occupied</p>
       <div class='linkGrp'><a>View Structure</a><br>
       <a>Make Adjustment</a><br>

@@ -5,17 +5,20 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatProgressSpinnerModule } from '@angular/material';
+import { CoreModule } from './core/core.module';
+import { HeaderComponent } from './core/header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FormsModule, MatProgressSpinnerModule
+    FormsModule, 
+    CoreModule
   ],
   providers: [],
   bootstrap: [AppComponent]

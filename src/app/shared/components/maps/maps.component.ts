@@ -15,9 +15,6 @@ export class MapsComponent implements OnInit, AfterViewInit {
   @Input() mapPage: string;
 
   structureArray: any[];
-  latitude: any;
-  longitude: any;
-  place: any;
 
   constructor(private mapService: MapService, private structureService: StructureService) { }
 
@@ -35,24 +32,8 @@ export class MapsComponent implements OnInit, AfterViewInit {
       this.mapService.plotLocation(this.structureArray);
     }
     else {
-      var maps = new google.maps.Map(document.getElementById('mapCase'), {
-        center: { lat: -34.397, lng: 150.644 },
-        zoom: 8,
-        mapTypeId: 'satellite'
-      });
-    
       var input = document.getElementById('pac-input');
-      const autocomplete = new google.maps.places.Autocomplete(input, { types: ["address"] });
-      autocomplete.addListener("place_changed", () => {
-          this.place = autocomplete.getPlace();
-          this.mapService.setLocation(this.place.geometry.location.lat(), this.place.geometry.location.lng());
-          maps.setCenter({lat: this.place.geometry.location.lat(), lng: this.place.geometry.location.lng()});
-          var markers = new google.maps.Marker({
-            center:{ lat: this.place.geometry.location.lat(), lng: this.place.geometry.location.lng()},
-            position: { lat: this.place.geometry.location.lat(), lng: this.place.geometry.location.lng() },
-            map: maps
-        });
-      });
+      this.mapService.searchLocation(input);
     }
 
   }

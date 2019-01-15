@@ -14,6 +14,7 @@ declare let google: any;
 export class MapService {
 
   mapContent: Map[];
+  place: any;
 
   constructor(private ngZone: NgZone) { }
 
@@ -68,5 +69,25 @@ export class MapService {
 
   getLocation(){
     return this.mapContent;
+  }
+
+  searchLocation(input){
+    var maps = new google.maps.Map(document.getElementById('mapCase'), {
+      center: { lat: -34.397, lng: 150.644 },
+      zoom: 8,
+      mapTypeId: 'satellite'
+    });
+   
+    const autocomplete = new google.maps.places.Autocomplete(input, { types: ["address"] });
+    autocomplete.addListener("place_changed", () => {
+        this.place = autocomplete.getPlace();
+        this.setLocation(this.place.geometry.location.lat(), this.place.geometry.location.lng());
+        maps.setCenter({lat: this.place.geometry.location.lat(), lng: this.place.geometry.location.lng()});
+        var markers = new google.maps.Marker({
+          center:{ lat: this.place.geometry.location.lat(), lng: this.place.geometry.location.lng()},
+          position: { lat: this.place.geometry.location.lat(), lng: this.place.geometry.location.lng() },
+          map: maps
+      });
+    });
   }
 }

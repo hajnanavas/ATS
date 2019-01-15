@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { MapService, Map } from '../../services/map.service';
-import { NgZone } from '@angular/core';
 import { StructureService } from '../../services/structure-service';
 
 declare let google: any;
@@ -20,7 +19,7 @@ export class MapsComponent implements OnInit, AfterViewInit {
   longitude: any;
   place: any;
 
-  constructor(private mapService: MapService, private ngZone: NgZone, private structureService: StructureService) { }
+  constructor(private mapService: MapService, private structureService: StructureService) { }
 
   ngOnInit() {
     this.structureArray = this.structureService.getStructureList()
@@ -41,25 +40,18 @@ export class MapsComponent implements OnInit, AfterViewInit {
         zoom: 8,
         mapTypeId: 'satellite'
       });
-      var markers = new google.maps.Marker({
-        position: { lat: -34.397, lng: 150.644 },
-        title: 'Hello World'
-    });
-    
-    
     
       var input = document.getElementById('pac-input');
       const autocomplete = new google.maps.places.Autocomplete(input, { types: ["address"] });
       autocomplete.addListener("place_changed", () => {
-       // this.ngZone.run(() => {
           this.place = autocomplete.getPlace();
           this.mapService.setLocation(this.place.geometry.location.lat(), this.place.geometry.location.lng());
+          maps.setCenter({lat: this.place.geometry.location.lat(), lng: this.place.geometry.location.lng()});
           var markers = new google.maps.Marker({
+            center:{ lat: this.place.geometry.location.lat(), lng: this.place.geometry.location.lng()},
             position: { lat: this.place.geometry.location.lat(), lng: this.place.geometry.location.lng() },
-            title: 'Hello World'
+            map: maps
         });
-        markers.setMap(maps);
-      //  });
       });
     }
 

@@ -17,19 +17,19 @@ export class MapsComponent implements OnInit, AfterViewInit {
   constructor(private mapService: MapService, private structureService: StructureService) { }
 
   ngOnInit() {
-    this.structureService.getStructureList().subscribe(structures => this.structureArray = structures);
-    console.log(this.structureArray);
+    
   }
 
   ngAfterViewInit() {
+    this.structureService.getStructureList().subscribe(structures => this.structureArray = structures);
+    console.log(this.structureArray);
     this.getMap();
   }
 
   getMap() {
 
-    if (this.mapPage == 'list') {
+    if (this.mapPage == 'list') 
       this.mapService.plotLocation(this.structureArray);
-    }
     else {
       var input = document.getElementById('pac-input');
       this.mapService.searchLocation(input);

@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Structure } from './structure';
+import { Observable, of } from 'rxjs';
 
 @Injectable()
 export class StructureService {
@@ -10,7 +11,7 @@ export class StructureService {
     occupiedSpace: 33,
     color: 'blue',
     status: 'active',
-    latitude: -33.890542, 
+    latitude: -33.890542,
     longitude: 151.274856,
     hidden: false,
     low: 36,
@@ -24,7 +25,7 @@ export class StructureService {
     occupiedSpace: 33,
     color: 'green',
     status: 'active',
-    latitude:-33.923036,
+    latitude: -33.923036,
     longitude: 151.259052,
     hidden: true,
     low: 36,
@@ -74,13 +75,14 @@ export class StructureService {
     full: 34
   }];
 
-  getStructureList(): Structure[] {
-    return this.structureContent
+  getStructureList(): Observable<Structure[]> {
+    return of(this.structureContent);
   };
   updateStructureList(item) {
     this.structureContent.push(item);
+    console.log(this.structureContent);
   }
-  filteredStructureList() {
-    return this.structureContent.filter(item => item.hidden == false);
+  filteredStructureList(): Observable<Structure[]> {
+    return of(this.structureContent.filter(item => item.hidden == false));
   }
 }

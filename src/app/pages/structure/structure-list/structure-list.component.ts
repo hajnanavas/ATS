@@ -17,7 +17,7 @@ export class StructureListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.structures = this.structureService.getStructureList();
+    this.structureService.getStructureList().subscribe(structures => this.structures = structures);
   }
 
   goToAddStructure() {
@@ -26,6 +26,9 @@ export class StructureListComponent implements OnInit {
     });
   }
   onChange(value) {
-    this.structures = (value.checked === false) ? this.structureService.getStructureList() : this.structureService.filteredStructureList();
+    if (value.checked === false)
+      this.structureService.getStructureList().subscribe(structures => this.structures = structures);
+    else
+      this.structureService.filteredStructureList().subscribe(structures => this.structures = structures);
   }
 }

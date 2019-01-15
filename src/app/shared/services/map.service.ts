@@ -45,7 +45,7 @@ export class MapService {
         map: map
       });
 
-      google.maps.event.addListener(marker, 'click', (function (marker, i) {
+      google.maps.event.addListener(marker, 'mouseover', (function (marker, i) {
         return function () {
 
           infowindow.close(map, marker);

@@ -15,7 +15,10 @@ header {
 	z-index: 999;
 	background: #fff; 
 }
-
+.contacts{
+  float:right;
+  padding-right: 15px;
+}
 .btnGrp{ 
   .mat-icon {
     color:white;
@@ -94,6 +97,7 @@ header {
   padding:20px 0;
 }
   
-.searchBox .form-group .has-search{
+.searchBox .search-input{
   display:inline-block  !important;
+  width: 85% !important;
 }

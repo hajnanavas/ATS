@@ -1,17 +1,16 @@
 .structurePage{
-    background-color: rgba(0, 0, 0, 0.05);
+    background-color: rgba(60, 64, 67, 0.15);
     height:100%;
     width: 100%;
     position:fixed;
-    top: 0%;
-    left: 0%;
+    margin-top: 5%;
 }
 .structurePage #list-sections{
     width:45%;
     margin-left:3%;
     float:left;
     background-color: white;
-    margin-top:5%;
+    margin-top:1%;
     height: 79%;
 }
 .structurePage #list-sections .content{
@@ -125,4 +124,16 @@ span {
     padding-right: 2%;
     padding-bottom: 1%;
     padding-top: 1%;
-  }
+}
+.page-path{
+    background-color:black;
+    color:white;
+    height:5%;
+    margin-top: -1%;
+}
+.page-path p{
+    padding: 1%;
+    font-weight: bold;
+    text-align: left;
+    font-size: small;
+}

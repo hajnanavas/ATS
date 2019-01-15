@@ -1,6 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 
+body{
+  margin:0px;
+  width: 100%;
+height: 100%;
+}
+header {
+	height: 7%;
+	width: 100%;
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 999;
+	background: #fff; 
+}
+
 .btnGrp{ 
   .mat-icon {
     color:white;
@@ -53,11 +68,11 @@
   text-decoration: underline !important;
   float: right !important;
 }
-h3{
+.structurePage h3{
   margin-bottom: -4%;
   float:left;
 }
-h4{
+.structurePage h4{
   float:left;
   font-weight: normal;
   font-size: small;
@@ -75,6 +90,10 @@ h4{
   border-bottom:none;
 }
 .percntg{ 
-text-align:center;
-padding:20px 0;
+  text-align:center;
+  padding:20px 0;
+}
+  
+.searchBox .form-group .has-search{
+  display:inline-block  !important;
 }

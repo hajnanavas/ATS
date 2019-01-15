@@ -12,14 +12,12 @@ import { Structure } from 'src/app/shared/services/structure';
 export class StructureListComponent implements OnInit {
 
   structures: Structure[];
-  mapPage: string;
 
   constructor(public dialog: MatDialog, private structureService: StructureService) {
   }
 
   ngOnInit() {
     this.structures = this.structureService.getStructureList();
-    this.mapPage = 'list';
   }
 
   goToAddStructure() {

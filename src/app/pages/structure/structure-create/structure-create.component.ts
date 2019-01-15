@@ -12,13 +12,10 @@ import { MapService } from 'src/app/shared/services/map.service';
 })
 export class StructureCreateComponent implements OnInit {
 
-  structuresArray: any = [];
-  structureCreateSubscription: any;
   private createForm: FormGroup;
   locations: any[];
   filteredLocations: any = [];
   latLong: any = [];
-  mapPage: string;
 
   constructor(public dialogRef: MatDialogRef<StructureCreateComponent>, private structureService: StructureService, private mapService: MapService) {
   }
@@ -41,7 +38,6 @@ export class StructureCreateComponent implements OnInit {
       low: new FormControl(),
       full: new FormControl()
     });
-    this.mapPage = 'create';
     this.getLocation();
     this.changeLocation();
 

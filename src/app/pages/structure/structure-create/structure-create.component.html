@@ -2,24 +2,7 @@
 <div mat-dialog-content>
   <form [formGroup]="createForm">
     <div class="leftData">
-      <!--<div class='searchBox'>
-        <div class="form-group has-search">
-           <mat-icon>search</mat-icon>
-          <mat-form-field>
-            <input type="text" aria-label="loctn" matInput formControlName="location" placeholder="Search location" [matAutocomplete]="auto">
-            <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
-              <mat-option *ngFor="let loc of filteredLocations | async" [value]="loc.name" (onSelectionChange)="onLocationSelect(loc)">
-                <span>{{loc.name}}</span> |
-                <small>{{loc.vicinity}}</small>
-              </mat-option>
-            </mat-autocomplete>
-          </mat-form-field>
-        </div>
-      </div>
-      <div class="mapContent"> -->
-        <app-maps [mapPage]='mapPage'></app-maps>
-      <!-- </div> -->
-
+        <app-maps mapPage='create'></app-maps>
     </div>
     <div class="rightData">
       <div class='formContent'>

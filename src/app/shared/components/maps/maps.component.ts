@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { MapService } from '../../services/map.service';
 import { StructureService } from '../../services/structure-service';
 
@@ -8,7 +8,7 @@ import { StructureService } from '../../services/structure-service';
   styleUrls: ['./maps.component.scss']
 })
 
-export class MapsComponent implements OnInit, AfterViewInit, OnDestroy {
+export class MapsComponent implements OnInit, AfterViewInit {
 
   @Input() mapPage: string;
 
@@ -20,11 +20,7 @@ export class MapsComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   ngAfterViewInit() {
-    this.structureService.getStructureList().subscribe(structures => {console.log('lllllllll', structures); this.structureArray = structures; this.getMap()});
-  }
-
-  ngOnDestroy() {
-    console.log('i am dead')
+    this.structureService.getStructureList().subscribe(structures => {this.structureArray = structures; this.getMap()});
   }
 
   getMap() {
@@ -42,7 +38,7 @@ export class MapsComponent implements OnInit, AfterViewInit, OnDestroy {
     if (value.checked === true)
       this.structureArray = this.structureArray.filter(item => item.hidden == false)
     else
-      this.structureService.getStructureList().subscribe(structures => {console.log('gggggggggggg', structures); this.structureArray = structures});
+      this.structureService.getStructureList().subscribe(structures => this.structureArray = structures);
     this.mapService.plotLocation(this.structureArray);
   }
 }

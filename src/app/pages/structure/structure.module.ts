@@ -4,14 +4,14 @@ import { CommonModule } from '@angular/common';
 import { StructureRoutingModule } from './structure-routing.module';
 import { StructureCreateComponent } from './structure-create/structure-create.component';
 import { StructureListComponent } from './structure-list/structure-list.component';
-import { MapsComponent } from 'src/app/shared/components/maps/maps.component';
 import { MatDialogModule, MatFormFieldModule, MatIconModule, MatSlideToggleModule } from '@angular/material';
 import { MatInputModule, MatSelectModule, MatAutocompleteModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StructureService } from 'src/app/shared/services/structure-service';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
-  declarations: [StructureCreateComponent, StructureListComponent,MapsComponent],
+  declarations: [StructureCreateComponent, StructureListComponent],
   imports: [
     CommonModule,
     StructureRoutingModule,
@@ -19,7 +19,7 @@ import { StructureService } from 'src/app/shared/services/structure-service';
     MatFormFieldModule,
     MatIconModule, MatSlideToggleModule, MatInputModule, MatSelectModule,
     MatAutocompleteModule,
-    FormsModule, ReactiveFormsModule 
+    FormsModule, ReactiveFormsModule, SharedModule
   ],
   entryComponents: [StructureCreateComponent],
   providers: [StructureService]

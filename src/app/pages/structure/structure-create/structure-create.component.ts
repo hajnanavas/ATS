@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { StructureService } from 'src/app/shared/services/structure-service';
-import { FormGroup, FormControl } from '@angular/forms';
-import { map, startWith } from 'rxjs/operators';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MapService } from 'src/app/shared/services/map.service';
 
 @Component({
@@ -14,7 +13,6 @@ export class StructureCreateComponent implements OnInit {
 
   private createForm: FormGroup;
   locations: any[];
-  filteredLocations: any = [];
   latLong: any = [];
 
   constructor(public dialogRef: MatDialogRef<StructureCreateComponent>, private structureService: StructureService, private mapService: MapService) {
@@ -23,23 +21,21 @@ export class StructureCreateComponent implements OnInit {
   ngOnInit() {
 
     this.createForm = new FormGroup({
-      structureName: new FormControl('', []),
-      structureType: new FormControl('', []),
-      color: new FormControl('', []),
+      structureName: new FormControl('', Validators.required),
+      structureType: new FormControl('', Validators.required),
+      color: new FormControl('green',  Validators.required),
       abbreviatedName: new FormControl(),
       description: new FormControl(),
-      status: new FormControl('', []),
-      hidden: new FormControl(),
+      status: new FormControl('active',  Validators.required),
+      hidden: new FormControl(false, Validators.required),
       note: new FormControl(),
-      totalSpace: new FormControl(),
-      occupiedSpace: new FormControl('', []),
-      location: new FormControl('', []),
-      medium: new FormControl(),
-      low: new FormControl(),
-      full: new FormControl()
+      totalSpace: new FormControl('',Validators.compose([Validators.required, Validators.pattern('^[0-9]+$')])),
+      occupiedSpace: new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[0-9]+$')])),
+      medium: new FormControl('',Validators.pattern('^[0-9]+$')),
+      low: new FormControl('',Validators.pattern('^[0-9]+$')),
+      full: new FormControl('',Validators.pattern('^[0-9]+$'))
     });
     this.getLocation();
-    this.changeLocation();
 
   }
 
@@ -88,17 +84,6 @@ export class StructureCreateComponent implements OnInit {
         "scope": "GOOGLE",
         "vicinity": "48 Pirrama Rd, Pyrmont"
       }]
-  }
-  changeLocation() {
-    this.filteredLocations = this.createForm.controls.location.valueChanges
-      .pipe(
-        startWith(''),
-        map(state => state ? this._filterLocations(state) : this.locations.slice())
-      );
-  }
-  _filterLocations(value: string) {
-    const filterValue = value.toLowerCase();
-    return this.locations.filter(item => item.name.toLowerCase().indexOf(filterValue) === 0);
   }
 
 }

@@ -135,13 +135,22 @@ export class MapService {
           map: maps
         });
       });
-      google.maps.event.addListener(maps, 'click', function (event) {
+      var geocoder = new google.maps.Geocoder();
+      google.maps.event.addListener(maps, 'click',  (event) => {
         if (markers != null) {
           markers.setMap(null);
           markers = null;
         }
-        console.log(event);
-      //  input.value='hajna';
+        this.setLocation(event.latLng.lat(), event.latLng.lng());
+        geocoder.geocode({
+          'latLng': event.latLng
+        }, function(results, status) {
+          if (status == google.maps.GeocoderStatus.OK) {
+            if (results[0]) {
+              input.value=results[0].formatted_address;
+            }
+          }
+        });
         markers = new google.maps.Marker({
           position: event.latLng,
           map: maps

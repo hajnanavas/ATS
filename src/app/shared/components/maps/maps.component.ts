@@ -35,7 +35,7 @@ export class MapsComponent implements OnInit, AfterViewInit {
   }
 
   onChange(value) {
-    if (value.checked === true)
+    if (value.checked === false)
       this.structureArray = this.structureArray.filter(item => item.hidden == false)
     else
       this.structureService.getStructureList().subscribe(structures => this.structureArray = structures);

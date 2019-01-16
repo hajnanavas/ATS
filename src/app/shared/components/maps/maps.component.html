@@ -1,7 +1,7 @@
 <div *ngIf="mapPage == 'list'" class="map-content">
     <div class="content-filter">
         <label>Show Hidden: </label>
-        <mat-slide-toggle (change)="onChange($event)"></mat-slide-toggle>
+        <mat-slide-toggle (change)="onChange($event)" [checked]="true"></mat-slide-toggle>
     </div>
     <div class="content">
         <div id='map'></div>

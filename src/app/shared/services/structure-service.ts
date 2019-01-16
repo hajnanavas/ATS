@@ -82,7 +82,7 @@ export class StructureService {
   }
 
   getStructureList(): Observable<Structure[]> {
-    return this._form.asObservable();
+    return this._form;
   };
 
   updateStructureList(nextState: any) {

@@ -40,6 +40,7 @@ export class StructureCreateComponent implements OnInit {
   }
 
   saveStructure(): void {
+    console.log('hiiiiii')
     this.latLong = this.mapService.getLocation();
     this.structureService.updateStructureList({
       structureName: this.createForm.controls.structureName.value,

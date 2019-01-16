@@ -112,6 +112,7 @@ export class MapService {
   }
 
   searchLocation(input) {
+    var markers;
     this.load('map').then(res => {
       var maps = new google.maps.Map(document.getElementById('mapCase'), {
         center: { lat: -34.397, lng: 150.644 },
@@ -124,9 +125,25 @@ export class MapService {
         this.place = autocomplete.getPlace();
         this.setLocation(this.place.geometry.location.lat(), this.place.geometry.location.lng());
         maps.setCenter({ lat: this.place.geometry.location.lat(), lng: this.place.geometry.location.lng() });
-        var markers = new google.maps.Marker({
+        if (markers != null) {
+          markers.setMap(null);
+          markers = null;
+        }
+        markers = new google.maps.Marker({
           center: { lat: this.place.geometry.location.lat(), lng: this.place.geometry.location.lng() },
           position: { lat: this.place.geometry.location.lat(), lng: this.place.geometry.location.lng() },
+          map: maps
+        });
+      });
+      google.maps.event.addListener(maps, 'click', function (event) {
+        if (markers != null) {
+          markers.setMap(null);
+          markers = null;
+        }
+        console.log(event);
+      //  input.value='hajna';
+        markers = new google.maps.Marker({
+          position: event.latLng,
           map: maps
         });
       });

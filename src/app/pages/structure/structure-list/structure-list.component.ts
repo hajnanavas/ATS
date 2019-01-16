@@ -26,9 +26,9 @@ export class StructureListComponent implements OnInit {
     });
   }
   onChange(value) {
-    if (value.checked === false)
-      this.structureService.getStructureList().subscribe(structures => this.structures = structures);
+    if (value.checked === true)
+      this.structures = this.structures.filter(item => item.hidden == false)
     else
-      this.structureService.filteredStructureList().subscribe(structures => this.structures = structures);
+      this.structureService.getStructureList().subscribe(structures => this.structures = structures);
   }
 }

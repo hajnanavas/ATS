@@ -61,7 +61,6 @@ export class MapService {
   setLocation(lat, lng) {
     this.mapContent = [];
     this.mapContent.push({ lat: lat, lng: lng });
-    console.log(this.mapContent);
   }
 
   getLocation() {

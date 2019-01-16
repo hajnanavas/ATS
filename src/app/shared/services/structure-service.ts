@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Structure } from './structure';
-import { Observable, of } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class StructureService {
@@ -74,15 +74,18 @@ export class StructureService {
     medium: 30,
     full: 34
   }];
+  _form: BehaviorSubject<Structure[]>;
+
+
+  constructor() {
+    this._form = new BehaviorSubject<Structure[]>(this.structureContent);
+  }
 
   getStructureList(): Observable<Structure[]> {
-    return of(this.structureContent);
+    return this._form.asObservable();
   };
-  updateStructureList(item) {
-    this.structureContent.push(item);
-    console.log(this.structureContent);
-  }
-  filteredStructureList(): Observable<Structure[]> {
-    return of(this.structureContent.filter(item => item.hidden == false));
+
+  updateStructureList(nextState: any) {
+    this._form.next([...this._form.getValue(), ...nextState]);
   }
 }

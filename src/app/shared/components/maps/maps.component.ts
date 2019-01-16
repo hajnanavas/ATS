@@ -17,18 +17,16 @@ export class MapsComponent implements OnInit, AfterViewInit {
   constructor(private mapService: MapService, private structureService: StructureService) { }
 
   ngOnInit() {
-    
+    this.structureService.getStructureList().subscribe(structures => this.structureArray = structures);
   }
 
   ngAfterViewInit() {
-    this.structureService.getStructureList().subscribe(structures => this.structureArray = structures);
-    console.log(this.structureArray);
     this.getMap();
   }
 
   getMap() {
 
-    if (this.mapPage == 'list') 
+    if (this.mapPage == 'list')
       this.mapService.plotLocation(this.structureArray);
     else {
       var input = document.getElementById('pac-input');
@@ -38,10 +36,10 @@ export class MapsComponent implements OnInit, AfterViewInit {
   }
 
   onChange(value) {
-    if (value.checked === false)
-      this.structureService.getStructureList().subscribe(structures => this.structureArray = structures);
+    if (value.checked === true)
+      this.structureArray = this.structureArray.filter(item => item.hidden == false)
     else
-      this.structureService.filteredStructureList().subscribe(structures => this.structureArray = structures);
+      this.structureService.getStructureList().subscribe(structures => this.structureArray = structures);
     this.mapService.plotLocation(this.structureArray);
   }
 }

@@ -22,7 +22,7 @@ export class StructureCreateComponent implements OnInit {
 
     this.createForm = new FormGroup({
       structureName: new FormControl('', Validators.required),
-      structureType: new FormControl('', Validators.required),
+      structureType: new FormControl('Lot', Validators.required),
       color: new FormControl('green',  Validators.required),
       abbreviatedName: new FormControl(),
       description: new FormControl(),

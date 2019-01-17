@@ -37,7 +37,7 @@
         <li *ngFor="let item of structures">
           <span class="colorSet color-{{item.color}}"></span>
           <span class="badge detls"><a>{{item.structureName}} - {{item.structureType}}</a></span>
-          <span class="badge space">{{item.occupiedSpace}}/{{item.totalSpace}}</span>
+          <span class="{{item.occupiedSpace>item.low?(item.occupiedSpace>item.medium?(item.occupiedSpace>item.full?'badge space full': 'badge space medium'):'badge space medium'):'badge space low'}}">{{item.occupiedSpace}}/{{item.totalSpace}}</span>
           <span class="delete">
             <mat-icon>add</mat-icon>
           </span>

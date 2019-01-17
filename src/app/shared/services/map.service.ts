@@ -57,10 +57,12 @@ export class MapService {
       <a>Make Adjustment</a><br>
       <a>View Occupany Report</a></div>
       </div>`
-
+      var statusColor= item.occupiedSpace>item.low?(item.occupiedSpace>item.medium?(item.occupiedSpace>item.full?'ff0000':'009900'):"009900"):"effa3f";
+      var pinImage = new google.maps.MarkerImage("http://www.googlemapsmarkers.com/v1/"+statusColor+"/");
         marker = new google.maps.Marker({
           position: new google.maps.LatLng(item.latitude, item.longitude),
-          map: map
+          map: map,
+          icon:pinImage,
         });
 
         google.maps.event.addListener(marker, 'mouseover', (function (marker, i) {

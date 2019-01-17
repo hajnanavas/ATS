@@ -12,7 +12,6 @@ import { MapService } from 'src/app/shared/services/map.service';
 export class StructureCreateComponent implements OnInit {
 
   private createForm: FormGroup;
-  locations: any[];
   latLong: any = [];
 
   constructor(public dialogRef: MatDialogRef<StructureCreateComponent>, private structureService: StructureService, private mapService: MapService) {
@@ -35,7 +34,6 @@ export class StructureCreateComponent implements OnInit {
       low: new FormControl('',Validators.pattern('^[0-9]+$')),
       full: new FormControl('',Validators.pattern('^[0-9]+$'))
     });
-    this.getLocation();
 
   }
 
@@ -57,33 +55,4 @@ export class StructureCreateComponent implements OnInit {
     });
     this.dialogRef.close();
   }
-
-  getLocation() {
-    this.locations = [
-      {
-        "geometry": {
-          "location": {
-            "lat": -33.867217,
-            "lng": 151.195939
-          }
-        },
-        "name": "Rhythmboat Cruises",
-        "place_id": "ChIJIfBAsjeuEmsRdgu9Pl1Ps48",
-        "scope": "GOOGLE",
-        "vicinity": "48 Pirrama Rd, Pyrmont"
-      },
-      {
-        "geometry": {
-          "location": {
-            "lat": -33.866786,
-            "lng": 151.195633
-          }
-        },
-        "name": "Private Charter Sydney Habour Cruise",
-        "place_id": "ChIJ5xQ7szeuEmsRs6Kj7YFZE9k",
-        "scope": "GOOGLE",
-        "vicinity": "48 Pirrama Rd, Pyrmont"
-      }]
-  }
-
 }

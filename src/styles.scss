@@ -4,7 +4,7 @@
 body{
   margin:0px;
   width: 100%;
-height: 100%;
+  height: 100%;
 }
 header {
 	height: 7%;
@@ -63,19 +63,25 @@ header {
 .gm-style-iw {
   left:0px !important;
 }
-.linkGrp a{
-  font-weight: normal !important;
-  text-decoration: underline !important;
-  float: right !important;
+.linkGrp {
+  a{
+    font-weight: normal !important;
+    text-decoration: underline !important;
+    float: right !important;
+  }
 }
-.structurePage h3{
-  margin-bottom: -4%;
-  float:left;
+.structurePage {
+  h3{
+    margin-bottom: -4%;
+    float:left;
+  }
 }
-.structurePage h4{
-  float:left;
-  font-weight: normal;
-  font-size: small;
+.structurePage{
+  h4{
+    float:left;
+    font-weight: normal;
+    font-size: small;
+  }
 }
 
 .progress-bar{
@@ -94,13 +100,15 @@ header {
   padding:20px 0;
 }
   
-.searchBox .search-input{
-  display:inline-block  !important;
-  width: 85% !important;
+.searchBox{
+  .search-input{
+    display:inline-block  !important;
+    width: 85% !important;
+  }
 }
 .mat-form-field-infix {
   width: 100%;
 }
-.mat-mini-fab  .mat-button-wrapper{
-  padding: 3px 0 !important;
+.mat-mini-fab .mat-button-wrapper{
+  padding: 0px !important;
 }

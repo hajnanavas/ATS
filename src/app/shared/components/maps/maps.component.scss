@@ -11,16 +11,20 @@
 .example-margin {
   margin: 0 10px;
 }
-.mat-progress-spinner svg {
-  transform: rotate(180deg);
+.mat-progress-spinner {
+  svg {
+    transform: rotate(180deg);
+  } 
 }
 .searchBox{
   border:1px solid rgba(60,64,67,0.15);
   margin-bottom:5%;
   border-radius: 4px;
 }
-.searchBox .mat-form-field {
-  display: block;
+.searchBox {
+  .mat-form-field {
+    display: block;
+  }
 }
 .mapContent{
   border:1px solid rgba(60,64,67,0.15);

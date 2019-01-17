@@ -5,17 +5,26 @@
     position:fixed;
     margin-top: 5%;
 }
-.structurePage #list-sections{
-    width:45%;
-    margin-left:3%;
-    float:left;
-    background-color: white;
-    margin-top:5%;
-    height: 68%;
+.structurePage {
+    #list-sections{
+        width:45%;
+        margin-left:3%;
+        float:left;
+        background-color: white;
+        margin-top:5%;
+        height: 68%;
+    }
 }
-.structurePage #list-sections .content{
-    margin: 5%;
-}    
+.structurePage {
+    #list-sections {
+        .content{
+            margin: 5%;
+            width: 85%;
+            height: 76%;
+            overflow-y: auto;
+        }    
+    }
+}
 #header{
     background-color: #044804;
     height: 7%;
@@ -28,31 +37,40 @@ h4{
     padding-left:3%;
 }
 .structure {
-    margin-top: 10%;
+    margin-top: -1%;
     list-style-type: none;
-    padding: 0;
+    padding: 5px;
+    overflow-x: hidden
 }
-.structure li {
-    position: relative;
-    left: 0;
-    background-color: white;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    height: 35px;
-    border-radius: 4px;
-    border:1px solid rgba(60,64,67,0.15);
+.structure {
+    li {
+        position: relative;
+        left: 0;
+        background-color: white;
+        margin-top: 15px;
+        margin-bottom: 15px;
+        height: 35px;
+        border-radius: 4px;
+        border:1px solid rgba(60,64,67,0.15);
+    }
 }
-.structure li a{
-    cursor: pointer
+.structure {
+    li {
+        a{
+            cursor: pointer
+        }
+    }
 }
 .structure li:hover {
     color: #607D8B;
     background-color: #DDD;
     left: .1em;
 }
-.structure li.selected:hover {
-    background-color: #BBD8DC !important;
-    color: white;
+.structure li{
+    .selected:hover {
+        background-color: #BBD8DC !important;
+        color: white;
+    }
 }
 .colorSet{
     padding: 15px 10px;
@@ -75,13 +93,15 @@ h4{
     background-color: red;
     border-right:red;
 }
-.structure .badge {
-    padding: 10px 0px;
-    float: left;
-    top: -7px;
-    height: 15px;
-    margin-right: -0.2em;
-    border-radius: 4px 0 0 4px;
+.structure {
+    .badge {
+        padding: 10px 0px;
+        float: left;
+        top: -7px;
+        height: 15px;
+        margin-right: -0.2em;
+        border-radius: 4px 0 0 4px;
+    }
 }
 span {
     display: inline-block;
@@ -138,11 +158,13 @@ span {
     position: fixed;
     width: 100%;
 }
-.page-path p{
-    padding-left: 1%;
-    font-weight: bold;
-    text-align: left;
-    font-size: small;
+.page-path {
+    p{
+        padding-left: 1%;
+        font-weight: bold;
+        text-align: left;
+        font-size: small;
+    }
 }
 .mat-mini-fab{
     border-radius: 76%;

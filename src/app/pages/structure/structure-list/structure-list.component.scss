@@ -10,8 +10,8 @@
     margin-left:3%;
     float:left;
     background-color: white;
-    margin-top:1%;
-    height: 75%;
+    margin-top:5%;
+    height: 68%;
 }
 .structurePage #list-sections .content{
     margin: 5%;
@@ -25,7 +25,7 @@ h4{
     font-weight: bold;
     float:left;
     color:white;
-    padding-left:10px;
+    padding-left:3%;
 }
 .structure {
     margin-top: 10%;
@@ -33,7 +33,6 @@ h4{
     padding: 0;
 }
 .structure li {
-  //  cursor: pointer;
     position: relative;
     left: 0;
     background-color: white;
@@ -99,21 +98,26 @@ span {
     border-right-color:white !important;
 }
 .btn{
-    margin: 10px 0px 5px -45px;
+    margin: 10px 0px 5px -90px;
     float:left;
+    border-radius: 5px;
+    border: 2px solid green
 }
 .btnGrp{
     float:right;
-    margin-top: 15px;
+    margin-top: 2%;
 }
 .addBtn{
     width: 25px;
     height: 25px;
     cursor: pointer;
-    border-color: green;
-    color: green;
-    border-width: 1px;
-    border-radius: 5px;
+    border-color: green !important;
+    color: green !important;
+    border-width: 1px !important;
+    border-radius: 5px !important;
+    min-width: 0px;
+    line-height: 0px;
+    padding: 0 0;
 }
 .detls{
     width:60%;
@@ -131,11 +135,26 @@ span {
     background-color:black;
     color:white;
     height:5%;
-    margin-top: -1%;
+    position: fixed;
+    width: 100%;
 }
 .page-path p{
-    padding: 1%;
+    padding-left: 1%;
     font-weight: bold;
     text-align: left;
     font-size: small;
+}
+.mat-mini-fab{
+    border-radius: 76%;
+    width: 30px;
+    height: 30px
+}
+.mat-mini-fab.mat-warn{
+    background-color: white;
+    color: #044804;
+}
+.parking-logo{
+    float: left;
+    top: 12%;
+    left: 2%;
 }

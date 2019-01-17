@@ -42,20 +42,30 @@ ul{
     display: inline-block;
 }
 .butn-green{
-    background-color: green;
+    background-color: green ;
     border-radius: 4px;
     height: 30px;
     border-color: green;
-    color: white;
+    color: white !important;
     margin:5px;
 }
 .btn{
     border-radius: 4px;
     height: 30px;
     margin:5px;
+
+    background-color: gray ;
+    border-radius: 4px;
+    height: 30px;
+    border-color: gray;
+    color: black !important;
 }
 .buttn{
-    float:right
+    float:right;
+    width: 100%;
+    margin-top: 2%;
+    border-top: 1px solid rgba(60, 64, 67, 0.15);
+
 }
 #mapCase {
     width: 100%;

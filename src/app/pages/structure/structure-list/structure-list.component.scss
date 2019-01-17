@@ -55,18 +55,6 @@ h4{
         border:1px solid rgba(60,64,67,0.15);
     }
 }
-.structure {
-    li {
-        a{
-            cursor: pointer
-        }
-    }
-}
-.structure li:hover {
-    color: #607D8B;
-    background-color: #DDD;
-    left: .1em;
-}
 .structure li{
     .selected:hover {
         background-color: #BBD8DC !important;

@@ -20,7 +20,7 @@ export class MapsComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    this.structureService.getStructureList().subscribe(structures => {this.structureArray = structures; this.getMap()});
+    this.structureService.getStructureList().subscribe(structures => { this.structureArray = structures; this.getMap() });
   }
 
   getMap() {
@@ -28,8 +28,7 @@ export class MapsComponent implements OnInit, AfterViewInit {
     if (this.mapPage == 'list')
       this.mapService.plotLocation(this.structureArray);
     else {
-      var input = document.getElementById('pac-input');
-      this.mapService.searchLocation(input);
+      this.mapService.searchLocation(document.getElementById('pac-input'));
     }
 
   }
@@ -40,5 +39,8 @@ export class MapsComponent implements OnInit, AfterViewInit {
     else
       this.structureService.getStructureList().subscribe(structures => this.structureArray = structures);
     this.mapService.plotLocation(this.structureArray);
+  }
+  closeSearch() {
+    (<HTMLInputElement>document.getElementById('pac-input')).value = '';
   }
 }

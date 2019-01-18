@@ -110,5 +110,9 @@ header {
   width: 100%;
 }
 .mat-mini-fab .mat-button-wrapper{
-  padding: 0px !important;
+  padding:0px 12px!important;
+}
+.mat-mini-fab{
+  font-size: 15px;
+  font-weight: 500;
 }

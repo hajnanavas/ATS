@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
+
 import { StructureCreateComponent } from '../structure-create/structure-create.component';
 import { StructureService } from 'src/app/shared/services/structure-service';
 import { Structure } from 'src/app/shared/services/structure';

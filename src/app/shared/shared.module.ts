@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MapsComponent } from './components/maps/maps.component';
 import {MatInputModule, MatFormFieldModule, MatIconModule, MatSlideToggleModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { MapsComponent } from './components/maps/maps.component';
 
 @NgModule({
   declarations: [MapsComponent],

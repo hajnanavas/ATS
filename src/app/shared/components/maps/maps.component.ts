@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
+
 import { MapService } from '../../services/map.service';
 import { StructureService } from '../../services/structure-service';
 

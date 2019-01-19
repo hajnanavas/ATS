@@ -84,7 +84,8 @@ h4{
 }
 .structure {
     .badge {
-        padding: 10px 0px;
+        padding-top: 10px;
+        padding-bottom: 10px;
         float: left;
         top: -7px;
         height: 15px;
@@ -135,7 +136,7 @@ span {
     border-radius: 5px !important;
     min-width: 0px;
     line-height: 0px;
-    padding: 0 0;
+    padding: 0;
 }
 .detls{
     width:60%;

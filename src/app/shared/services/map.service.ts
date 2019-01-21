@@ -57,15 +57,15 @@ export class MapService {
       <a>Make Adjustment</a><br>
       <a>View Occupany Report</a></div>
       </div>`
-      this.statusColor = item.occupiedSpace>item.low?(item.occupiedSpace>item.medium?(item.occupiedSpace>item.full?'ff0000':'009900'):"009900"):"e7ea13";
-      var pinImage = new google.maps.MarkerImage("http://www.googlemapsmarkers.com/v1/"+this.statusColor+"/");
+        this.statusColor = item.occupiedSpace > item.low ? (item.occupiedSpace > item.medium ? (item.occupiedSpace > item.full ? 'ff0000' : '009900') : "009900") : "e7ea13";
+        var pinImage = new google.maps.MarkerImage("http://www.googlemapsmarkers.com/v1/" + this.statusColor + "/");
         marker = new google.maps.Marker({
           position: new google.maps.LatLng(item.latitude, item.longitude),
           map: map,
-          icon:pinImage,
+          icon: pinImage,
         });
 
-        google.maps.event.addListener(marker, 'mouseover', (function (marker, i) {
+        google.maps.event.addListener(marker, 'mouseover', ((marker, i) => {
           return function () {
 
             infowindow.close(map, marker);
@@ -98,14 +98,14 @@ export class MapService {
           this.scripts[name].loaded = true;
           resolve({ script: name, loaded: true, status: 'Loaded' });
         };
-        script.onerror = (error: any) => resolve({ script: name, loaded: false, status: 'Loaded' });
+        script.onerror = (error: any) => reject({ script: name, loaded: false, status: 'Loaded' });
         document.getElementsByTagName('head')[0].appendChild(script);
       } else {
         resolve({ script: name, loaded: true, status: 'Already Loaded' });
       }
     });
   }
-  
+
   setLocation(lat, lng) {
     this.mapContent = [];
     this.mapContent.push({ lat: lat, lng: lng });
@@ -127,20 +127,22 @@ export class MapService {
       const autocomplete = new google.maps.places.Autocomplete(input, { types: ["address"] });
       autocomplete.addListener("place_changed", () => {
         this.place = autocomplete.getPlace();
-        this.setLocation(this.place.geometry.location.lat(), this.place.geometry.location.lng());
-        maps.setCenter({ lat: this.place.geometry.location.lat(), lng: this.place.geometry.location.lng() });
+        const lat = this.place.geometry.location.lat();
+        const lng = this.place.geometry.location.lng();
+        this.setLocation(lat, lng);
+        maps.setCenter({ lat: lat, lng: lng });
         if (markers != null) {
           markers.setMap(null);
           markers = null;
         }
         markers = new google.maps.Marker({
-          center: { lat: this.place.geometry.location.lat(), lng: this.place.geometry.location.lng() },
-          position: { lat: this.place.geometry.location.lat(), lng: this.place.geometry.location.lng() },
+          center: { lat: lat, lng: lng },
+          position: { lat: lat, lng: lng },
           map: maps
         });
       });
       var geocoder = new google.maps.Geocoder();
-      google.maps.event.addListener(maps, 'click',  (event) => {
+      google.maps.event.addListener(maps, 'click', (event) => {
         if (markers != null) {
           markers.setMap(null);
           markers = null;
@@ -148,10 +150,10 @@ export class MapService {
         this.setLocation(event.latLng.lat(), event.latLng.lng());
         geocoder.geocode({
           'latLng': event.latLng
-        }, function(results, status) {
+        }, (results, status) => {
           if (status == google.maps.GeocoderStatus.OK) {
             if (results[0]) {
-              input.value=results[0].formatted_address;
+              input.value = results[0].formatted_address;
             }
           }
         });

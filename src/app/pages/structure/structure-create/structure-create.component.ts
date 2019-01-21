@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
-import { StructureService } from 'src/app/shared/services/structure-service';
+import { StructureService } from 'src/app/shared/services/structure.service';
 import { MapService } from 'src/app/shared/services/map.service';
 
 @Component({

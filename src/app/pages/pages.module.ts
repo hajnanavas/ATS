@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { PagesRoutingModule } from './pages-routing.module';
-import { StructureService } from '../shared/services/structure-service';
+import { StructureService } from '../shared/services/structure.service';
 
 @NgModule({
   declarations: [],

@@ -7,7 +7,7 @@ import { StructureListComponent } from './structure-list/structure-list.componen
 import { MatDialogModule, MatFormFieldModule, MatIconModule, MatSlideToggleModule } from '@angular/material';
 import { MatInputModule, MatSelectModule, MatAutocompleteModule, MatButtonModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { StructureService } from 'src/app/shared/services/structure-service';
+import { StructureService } from 'src/app/shared/services/structure.service';
 import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({

@@ -17,9 +17,15 @@ import { SharedModule } from 'src/app/shared/shared.module';
     StructureRoutingModule,
     MatDialogModule,
     MatFormFieldModule,
-    MatIconModule, MatSlideToggleModule, MatInputModule, MatSelectModule,
-    MatAutocompleteModule, MatButtonModule,
-    FormsModule, ReactiveFormsModule, SharedModule
+    MatIconModule,
+    MatSlideToggleModule,
+    MatInputModule,
+    MatSelectModule,
+    MatAutocompleteModule,
+    MatButtonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SharedModule
   ],
   entryComponents: [StructureCreateComponent],
   providers: [StructureService]

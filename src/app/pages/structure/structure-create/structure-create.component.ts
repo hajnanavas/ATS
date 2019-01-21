@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 import { StructureService } from 'src/app/shared/services/structure-service';
 import { MapService } from 'src/app/shared/services/map.service';
@@ -15,30 +15,34 @@ export class StructureCreateComponent implements OnInit {
   private createForm: FormGroup;
   latLong: any = [];
 
-  constructor(public dialogRef: MatDialogRef<StructureCreateComponent>, private structureService: StructureService, private mapService: MapService) {
+  constructor(
+    public dialogRef: MatDialogRef<StructureCreateComponent>,
+    private structureService: StructureService,
+    private mapService: MapService,
+    private formBuilder: FormBuilder) {
   }
 
   ngOnInit() {
 
-    this.createForm = new FormGroup({
-      structureName: new FormControl('', Validators.required),
-      structureType: new FormControl('Lot', Validators.required),
-      color: new FormControl('green',  Validators.required),
-      abbreviatedName: new FormControl(),
-      description: new FormControl(),
-      status: new FormControl('active',  Validators.required),
-      hidden: new FormControl(false, Validators.required),
-      note: new FormControl(),
-      totalSpace: new FormControl('',Validators.compose([Validators.required, Validators.pattern('^[0-9]+$')])),
-      occupiedSpace: new FormControl('', Validators.compose([Validators.required, Validators.pattern('^[0-9]+$')])),
-      medium: new FormControl('',Validators.pattern('^[0-9]+$')),
-      low: new FormControl('',Validators.pattern('^[0-9]+$')),
-      full: new FormControl('',Validators.pattern('^[0-9]+$'))
+    this.createForm = this.formBuilder.group({
+      structureName: ['', Validators.required],
+      structureType: ['Lot', Validators.required],
+      color: ['green', Validators.required],
+      abbreviatedName: [],
+      description: [],
+      status: ['active', Validators.required],
+      hidden: [false, Validators.required],
+      note: [],
+      totalSpace: ['', Validators.compose([Validators.required, Validators.pattern('^[0-9]+$')])],
+      occupiedSpace: ['', Validators.compose([Validators.required, Validators.pattern('^[0-9]+$')])],
+      medium: ['', Validators.pattern('^[0-9]+$')],
+      low: ['', Validators.pattern('^[0-9]+$')],
+      full: ['', Validators.pattern('^[0-9]+$')]
     });
 
   }
 
-  saveStructure(): void {
+  saveStructure() {
     this.latLong = this.mapService.getLocation();
     this.structureService.updateStructureList({
       structureName: this.createForm.controls.structureName.value,

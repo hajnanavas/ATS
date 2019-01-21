@@ -18,7 +18,6 @@ export const ScriptStore: Scripts[] = [
 @Injectable({
   providedIn: 'root'
 })
-
 export class MapService {
 
   public loadAPI: Promise<any>;

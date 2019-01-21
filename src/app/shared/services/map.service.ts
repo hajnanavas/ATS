@@ -15,13 +15,14 @@ export class MapService {
   mapContent: Map[];
   place: any;
   statusColor: string;
+  map: any;
 
   constructor(private loaderService: LoaderService) {
   }
 
   plotLocation(structureArray) {
     this.loaderService.load('map').then(res => {
-      var map = new google.maps.Map(document.getElementById('map'), {
+      this.map = new google.maps.Map(document.getElementById('map'), {
         zoom: 10,
         center: new google.maps.LatLng(-33.92, 151.25),
         mapTypeId: google.maps.MapTypeId.ROADMAP
@@ -45,18 +46,18 @@ export class MapService {
         var pinImage = new google.maps.MarkerImage("http://www.googlemapsmarkers.com/v1/" + this.statusColor + "/");
         marker = new google.maps.Marker({
           position: new google.maps.LatLng(item.latitude, item.longitude),
-          map: map,
+          map: this.map,
           icon: pinImage,
         });
 
         google.maps.event.addListener(marker, 'mouseover', ((marker, i) => {
           return function () {
 
-            infowindow.close(map, marker);
+            infowindow.close(this.map, marker);
             infowindow = new google.maps.InfoWindow({
               content: structureContent
             });
-            infowindow.open(map, marker);
+            infowindow.open(this.map, marker);
           }
         })(marker, i));
       });

@@ -4,9 +4,10 @@ import { MatInputModule, MatFormFieldModule, MatIconModule, MatSlideToggleModule
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MapsComponent } from './components/maps/maps.component';
+import { InfoWindowComponent } from './components/info-window/info-window.component';
 
 @NgModule({
-  declarations: [MapsComponent],
+  declarations: [MapsComponent, InfoWindowComponent],
   imports: [
     CommonModule,
     MatInputModule,
@@ -16,6 +17,7 @@ import { MapsComponent } from './components/maps/maps.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  exports: [MapsComponent]
+  exports: [MapsComponent],
+  entryComponents: [InfoWindowComponent]
 })
 export class SharedModule { }

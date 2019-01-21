@@ -1,0 +1,11 @@
+<div>
+  <h3 id="firstHeading" class="firstHeading">{{param.structureName}} {{param.structureType}} - Est</h3><br>
+  <h4>{{param.structureType}}. {{param.totalSpace - param.occupiedSpace}} of {{param.totalSpace}} available</h4><br>
+  <div class='progress-bar'>
+    <p class='percntg'>{{(param.occupiedSpace / param.totalSpace * 100).toFixed(2)}} %</p>
+  </div>
+  <p>{{param.occupiedSpace}} of {{param.totalSpace}} Spots Occupied</p>
+  <div class='linkGrp'><a>View Structure</a><br>
+    <a>Make Adjustment</a><br>
+    <a>View Occupany Report</a></div>
+</div>

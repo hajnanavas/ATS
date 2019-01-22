@@ -12,14 +12,17 @@ declare let google: any;
   providedIn: 'root'
 })
 export class MapService {
- 
+
   mapContent: Map[];
   place: any;
   statusColor: string;
   map: any;
   compRef: ComponentRef<InfoWindowComponent>;
-  
-  constructor(private loaderService: LoaderService,private zone: NgZone ,private resolver: ComponentFactoryResolver, private injector: Injector, private appRef: ApplicationRef) {
+  infowindow: any;
+  marker: any;
+  maps: any;
+  markers: any;
+  constructor(private loaderService: LoaderService, private zone: NgZone, private resolver: ComponentFactoryResolver, private injector: Injector, private appRef: ApplicationRef) {
   }
 
   plotLocation(structureArray) {
@@ -29,44 +32,44 @@ export class MapService {
         center: new google.maps.LatLng(-33.92, 151.25),
         mapTypeId: google.maps.MapTypeId.ROADMAP
       });
-      var infowindow = new google.maps.InfoWindow();
-      var marker, i;
+      this.infowindow = new google.maps.InfoWindow();
+      var i;
 
       structureArray.forEach(item => {
         this.statusColor = item.occupiedSpace > item.low ? (item.occupiedSpace > item.medium ? (item.occupiedSpace > item.full ? 'ff0000' : '009900') : "009900") : "e7ea13";
         var pinImage = new google.maps.MarkerImage("http://www.googlemapsmarkers.com/v1/" + this.statusColor + "/");
-        marker = new google.maps.Marker({
+        this.marker = new google.maps.Marker({
           position: new google.maps.LatLng(item.latitude, item.longitude),
           map: this.map,
           icon: pinImage,
         });
 
-        marker.addListener('click', ((marker,i) => { 
+        this.marker.addListener('click', ((marker, i) => {
           return () => {
-            this.zone.run(() =>{
-            if(this.compRef) this.compRef.destroy();
-  
-            const compFactory = this.resolver.resolveComponentFactory(InfoWindowComponent);
-            this.compRef = compFactory.create(this.injector);
-                
-            this.compRef.instance.param = item;
-            
-            let div = document.createElement('div');
-            div.appendChild(this.compRef.location.nativeElement);
-            
-            infowindow.setContent(div);
-            infowindow.open(this.map, marker);
-        
-            this.appRef.attachView(this.compRef.hostView);
-            this.compRef.onDestroy(() => {
-              this.appRef.detachView(this.compRef.hostView);
-             });
+            this.zone.run(() => {
+              if (this.compRef) this.compRef.destroy();
+
+              const compFactory = this.resolver.resolveComponentFactory(InfoWindowComponent);
+              this.compRef = compFactory.create(this.injector);
+
+              this.compRef.instance.param = item;
+
+              let div = document.createElement('div');
+              div.appendChild(this.compRef.location.nativeElement);
+
+              this.infowindow.setContent(div);
+              this.infowindow.open(this.map, marker);
+
+              this.appRef.attachView(this.compRef.hostView);
+              this.compRef.onDestroy(() => {
+                this.appRef.detachView(this.compRef.hostView);
+              });
             });
           }
-        })(marker, i));
+        })(this.marker, i));
 
-        infowindow.addListener('closeclick', _ => {
-           this.compRef.destroy();
+        this.infowindow.addListener('closeclick', _ => {
+          this.compRef.destroy();
         });
       });
     }).catch(err => {
@@ -84,9 +87,9 @@ export class MapService {
   }
 
   searchLocation(input) {
-    var markers;
+    
     this.loaderService.load('map').then(res => {
-      var maps = new google.maps.Map(document.getElementById('mapCase'), {
+      this.maps = new google.maps.Map(document.getElementById('mapCase'), {
         center: { lat: -34.397, lng: 150.644 },
         zoom: 8,
         mapTypeId: 'satellite'
@@ -98,22 +101,22 @@ export class MapService {
         const lat = this.place.geometry.location.lat();
         const lng = this.place.geometry.location.lng();
         this.setLocation(lat, lng);
-        maps.setCenter({ lat: lat, lng: lng });
-        if (markers != null) {
-          markers.setMap(null);
-          markers = null;
+        this.maps.setCenter({ lat: lat, lng: lng });
+        if (this.markers != null) {
+          this.markers.setMap(null);
+          this.markers = null;
         }
-        markers = new google.maps.Marker({
+        this.markers = new google.maps.Marker({
           center: { lat: lat, lng: lng },
           position: { lat: lat, lng: lng },
-          map: maps
+          map: this.maps
         });
       });
       var geocoder = new google.maps.Geocoder();
-      google.maps.event.addListener(maps, 'click', (event) => {
-        if (markers != null) {
-          markers.setMap(null);
-          markers = null;
+      google.maps.event.addListener(this.maps, 'click', (event) => {
+        if (this.markers != null) {
+          this.markers.setMap(null);
+          this.markers = null;
         }
         this.setLocation(event.latLng.lat(), event.latLng.lng());
         geocoder.geocode({
@@ -125,9 +128,9 @@ export class MapService {
             }
           }
         });
-        markers = new google.maps.Marker({
+        this.markers = new google.maps.Marker({
           position: event.latLng,
-          map: maps
+          map: this.maps
         });
       });
     }).catch(err => {

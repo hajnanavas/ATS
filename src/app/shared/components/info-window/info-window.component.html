@@ -1,6 +1,6 @@
 <div>
   <h3>{{param.structureName}} {{param.structureType}} - Est</h3><br>
-  <h4>{{param.structureType}}. {{param.totalSpace - param.occupiedSpace}} of {{param.totalSpace}} available</h4><br>
+  <h4>{{param.structureType}}. {{param.totalSpace - param.occupiedSpace}} of {{param.totalSpace}} available</h4>
   <div class='progress-bar'>
       <mat-progress-spinner class="example-margin" [ngStyle]="{'stroke':strokeColor}" mode = 'determinate' value="{{(param.occupiedSpace / param.totalSpace * 100).toFixed(2)}}">
       </mat-progress-spinner>

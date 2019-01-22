@@ -39,5 +39,6 @@ export class MapsComponent implements AfterViewInit {
   }
   closeSearch() {
     (<HTMLInputElement>document.getElementById('pac-input')).value = '';
+    this.mapService.deleteMarkers();
   }
 }

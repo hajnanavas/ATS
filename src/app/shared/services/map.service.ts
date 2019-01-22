@@ -137,4 +137,12 @@ export class MapService {
 
     })
   }
+
+  deleteMarkers(){
+    if (this.markers != null) {
+      this.markers.setMap(null);
+      this.markers = null;
+      this.mapContent = []
+    }
+  }
 }

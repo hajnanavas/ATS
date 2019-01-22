@@ -26,6 +26,8 @@ export class MapService {
   }
 
   plotLocation(structureArray) {
+    
+    var i;
     this.loaderService.load('map').then(res => {
       this.map = new google.maps.Map(document.getElementById('map'), {
         zoom: 10,
@@ -33,7 +35,6 @@ export class MapService {
         mapTypeId: google.maps.MapTypeId.ROADMAP
       });
       this.infowindow = new google.maps.InfoWindow();
-      var i;
 
       structureArray.forEach(item => {
         this.statusColor = item.occupiedSpace > item.low ? (item.occupiedSpace > item.medium ? (item.occupiedSpace > item.full ? 'ff0000' : '009900') : "009900") : "e7ea13";

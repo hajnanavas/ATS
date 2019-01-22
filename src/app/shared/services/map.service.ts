@@ -1,6 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ComponentRef, Injector, ComponentFactoryResolver, ApplicationRef, NgZone } from '@angular/core';
 
 import { LoaderService } from './loader.service';
+import { InfoWindowComponent } from '../components/info-window/info-window.component';
 export interface Map {
   lat: any,
   lng: any
@@ -16,8 +17,9 @@ export class MapService {
   place: any;
   statusColor: string;
   map: any;
-
-  constructor(private loaderService: LoaderService) {
+  compRef: ComponentRef<InfoWindowComponent>;
+  
+  constructor(private loaderService: LoaderService,private zone: NgZone ,private resolver: ComponentFactoryResolver, private injector: Injector, private appRef: ApplicationRef) {
   }
 
   plotLocation(structureArray) {
@@ -31,17 +33,6 @@ export class MapService {
       var marker, i;
 
       structureArray.forEach(item => {
-        var structureContent = `<div>
-      <h3 id="firstHeading" class="firstHeading">${item.structureName} ${item.structureType} - Est</h3><br>
-      <h4>${item.structureType}. ${item.totalSpace - item.occupiedSpace} of ${item.totalSpace} available</h4><br>
-      <div class='progress-bar'>
-      <p class='percntg'>${(item.occupiedSpace / item.totalSpace * 100).toFixed(2)} %</p>
-      </div>
-      <p>${item.occupiedSpace} of ${item.totalSpace} Spots Occupied</p>
-      <div class='linkGrp'><a>View Structure</a><br>
-      <a>Make Adjustment</a><br>
-      <a>View Occupany Report</a></div>
-      </div>`
         this.statusColor = item.occupiedSpace > item.low ? (item.occupiedSpace > item.medium ? (item.occupiedSpace > item.full ? 'ff0000' : '009900') : "009900") : "e7ea13";
         var pinImage = new google.maps.MarkerImage("http://www.googlemapsmarkers.com/v1/" + this.statusColor + "/");
         marker = new google.maps.Marker({
@@ -50,23 +41,38 @@ export class MapService {
           icon: pinImage,
         });
 
-        google.maps.event.addListener(marker, 'mouseover', ((marker, i) => {
-          return function () {
-
-            infowindow.close(this.map, marker);
-            infowindow = new google.maps.InfoWindow({
-              content: structureContent
-            });
+        marker.addListener('click', ((marker,i) => { 
+          return () => {
+            this.zone.run(() =>{
+            if(this.compRef) this.compRef.destroy();
+  
+            const compFactory = this.resolver.resolveComponentFactory(InfoWindowComponent);
+            this.compRef = compFactory.create(this.injector);
+                
+            this.compRef.instance.param = item;
+            
+            let div = document.createElement('div');
+            div.appendChild(this.compRef.location.nativeElement);
+            
+            infowindow.setContent(div);
             infowindow.open(this.map, marker);
+        
+            this.appRef.attachView(this.compRef.hostView);
+            this.compRef.onDestroy(() => {
+              this.appRef.detachView(this.compRef.hostView);
+             });
+            });
           }
         })(marker, i));
+
+        infowindow.addListener('closeclick', _ => {
+           this.compRef.destroy();
+        });
       });
     }).catch(err => {
 
     })
   }
-
- 
 
   setLocation(lat, lng) {
     this.mapContent = [];

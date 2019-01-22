@@ -6,11 +6,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { HeaderComponent } from './core/header/header.component';
+import { InfoWindowComponent } from './shared/components/info-window/info-window.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent
+    HeaderComponent,
+    InfoWindowComponent
   ],
   imports: [
     BrowserModule,
@@ -19,6 +21,7 @@ import { HeaderComponent } from './core/header/header.component';
     CoreModule
   ],
   providers: [],
+  entryComponents:[InfoWindowComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

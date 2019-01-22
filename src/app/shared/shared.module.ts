@@ -1,13 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatInputModule, MatFormFieldModule, MatIconModule, MatSlideToggleModule } from '@angular/material';
+import { MatInputModule, MatFormFieldModule, MatIconModule, MatSlideToggleModule, MatProgressSpinnerModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MapsComponent } from './components/maps/maps.component';
-import { InfoWindowComponent } from './components/info-window/info-window.component';
 
 @NgModule({
-  declarations: [MapsComponent, InfoWindowComponent],
+  declarations: [MapsComponent],
   imports: [
     CommonModule,
     MatInputModule,
@@ -15,9 +14,9 @@ import { InfoWindowComponent } from './components/info-window/info-window.compon
     MatIconModule,
     MatSlideToggleModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatProgressSpinnerModule
   ],
   exports: [MapsComponent],
-  entryComponents: [InfoWindowComponent]
 })
 export class SharedModule { }

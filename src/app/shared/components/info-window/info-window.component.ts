@@ -11,7 +11,9 @@ export class InfoWindowComponent implements OnInit {
 
   onCounterIncremented = new EventEmitter();
   constructor() { }
-
+  color = 'primary';
+  mode = 'determinate';
+  value = 50;
   ngOnInit() {
  console.log('param',this.param);
   }

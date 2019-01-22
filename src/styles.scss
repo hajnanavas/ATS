@@ -92,22 +92,6 @@ header {
     font-size: small;
   }
 }
-
-.progress-bar{
-  margin-top:30%;
-  margin-left:10%;
-  height:45px;
-  width:90px;
-  border-radius: 90px 90px 0 0;
-  border: 5px solid red;
-  border-bottom:none;
-}
-.percntg{ 
-  text-align:center;
-  padding-top:20px ;
-  padding-bottom:20px;
-}
-  
 .searchBox{
   .search-input{
     display:inline-block !important;
@@ -124,4 +108,11 @@ header {
 .mat-mini-fab{
   font-size: 15px;
   font-weight: 500;
+}
+
+.mat-progress-spinner svg {
+  transform: rotate(180deg) !important;
+}
+.mat-progress-spinner circle{
+  stroke: inherit;
 }

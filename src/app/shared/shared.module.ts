@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatInputModule, MatFormFieldModule, MatIconModule, MatSlideToggleModule, MatProgressSpinnerModule } from '@angular/material';
+import { MatInputModule, MatFormFieldModule, MatIconModule, MatSlideToggleModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MapsComponent } from './components/maps/maps.component';
@@ -14,8 +14,7 @@ import { MapsComponent } from './components/maps/maps.component';
     MatIconModule,
     MatSlideToggleModule,
     FormsModule,
-    ReactiveFormsModule,
-    MatProgressSpinnerModule
+    ReactiveFormsModule
   ],
   exports: [MapsComponent],
 })

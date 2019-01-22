@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { HeaderComponent } from './core/header/header.component';
 import { InfoWindowComponent } from './shared/components/info-window/info-window.component';
+import { MatProgressSpinnerModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { InfoWindowComponent } from './shared/components/info-window/info-window
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    CoreModule
+    CoreModule,
+    MatProgressSpinnerModule
   ],
   providers: [],
   entryComponents:[InfoWindowComponent],

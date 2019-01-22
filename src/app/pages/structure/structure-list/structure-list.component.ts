@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material';
 
 import { StructureCreateComponent } from '../structure-create/structure-create.component';
 import { StructureService } from 'src/app/shared/services/structure.service';
-import { Structure } from 'src/app/shared/services/structure';
+import { Structure } from 'src/app/shared/services/structure.interface';
 
 @Component({
   selector: 'app-structure-list',

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Structure } from './structure';
+import { Structure } from './structure.interface';
 import { Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable()

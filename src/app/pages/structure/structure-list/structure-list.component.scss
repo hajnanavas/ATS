@@ -1,0 +1,95 @@
+.map{
+    width:45%;
+    margin-left:10px;
+    float:left;
+    background-color: white;
+  }
+
+  #header{
+    background-color: green;
+    margin-top:0px;
+    height: 40px;
+  }
+  h4{
+    font-size: 15px;
+    float:left;
+  }
+  .structure {
+    margin: 60px 0px 5px 0px;
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+}
+
+.structure li {
+    cursor: pointer;
+    position: relative;
+    left: 0;
+    background-color: #EEE;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    padding: 0px 10px;
+    height: 35px;
+    border-radius: 4px;
+    border:1px solid rgba(60,64,67,0.15);
+}
+
+.structure li:hover {
+    color: #607D8B;
+    background-color: #DDD;
+    left: .1em;
+}
+
+.structure li.selected:hover {
+    background-color: #BBD8DC !important;
+    color: white;
+}
+.colorSet{
+    padding: 15px 15px;
+    position: absolute;
+    left: 0px;
+    height: 5px;
+    margin-right: 10px;
+    border-radius: 4px 0 0 4px;
+}
+.color-green{
+    background-color: green;
+    border-right:green;
+}
+.color-blue{
+    background-color: blue;
+    border-right:blue;
+}
+
+.structure .badge {
+    padding: 10px 0px;
+    top: -7px;
+    height: 15px;
+    margin-right: .8em;
+    border-radius: 4px 0 0 4px;
+}
+
+span {
+    display: inline-block;
+    border-right: 1px solid #019ed5;
+    border-right-color:rgba(60,64,67,0.15);
+    margin-right: 35px;
+}
+.delete {
+   width: 10px;
+   float: right;
+   margin-top:6px;
+}
+.btn{
+    margin: 15px 0px 5px -45px;
+    float:left;
+}
+.btnGrp{
+    float:right;
+}
+.addBtn{
+    height: 25px;
+}
+.detls{
+    width:60%;
+}

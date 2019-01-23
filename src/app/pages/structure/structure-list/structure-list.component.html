@@ -1,0 +1,35 @@
+<div class='map'>
+  <div id='header'>
+    <h4>Structures</h4>
+    <div class='btnGrp'>
+      <button><i class="fas fa-sync-alt"></i></button>
+      <button><i class="fa fa-minus" aria-hidden="true"></i></button>
+    </div>
+  </div>
+  <app-maps [structureArray]="structures"></app-maps>
+</div>
+
+<div class='map'>
+  <div id='header'>
+    <h4>Structures</h4>
+    <div class='btnGrp'>
+      <button><i class="fas fa-sync-alt"></i></button>
+      <button><i class="fa fa-minus" aria-hidden="true"></i></button>
+      <button></button>
+    </div>
+  </div>
+  <div class='btn'>
+      <button  mat-raised-button (click)="goToAddStructure()">+</button>
+  </div>
+  <ul class="structure">
+    <li *ngFor="let item of structures">
+      <span class="colorSet color-{{item.color}}"></span>
+      <span class="badge detls">{{item.structureName}} - {{item.structureType}}</span>
+      <span class="badge">{{item.occupiedSpace}}/{{item.totalSpace}}</span>
+      <span class="delete"><button>+</button></span>
+      <span class="delete"><button>edit</button></span>
+      <span class="delete"><button>x</button></span>
+    </li>
+
+  </ul>
+</div>

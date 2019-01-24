@@ -43,21 +43,10 @@ export class StructureCreateComponent implements OnInit {
   }
 
   saveStructure() {
+    console.log(this.createForm.value);
     this.latLong = this.mapService.getLocation();
-    this.structureService.updateStructureList({
-      structureName: this.createForm.controls.structureName.value,
-      structureType: this.createForm.controls.structureType.value,
-      totalSpace: this.createForm.controls.totalSpace.value,
-      occupiedSpace: this.createForm.controls.occupiedSpace.value,
-      color: this.createForm.controls.color.value,
-      status: this.createForm.controls.status.value,
-      hidden: this.createForm.controls.hidden.value,
-      latitude: this.latLong[0].lat,
-      longitude: this.latLong[0].lng,
-      low: this.createForm.controls.low.value,
-      medium: this.createForm.controls.medium.value,
-      full: this.createForm.controls.full.value
-    });
+    const { structureName, structureType, totalSpace, occupiedSpace, color, status, hidden, low, medium, full } =this.createForm.value;
+    this.structureService.updateStructureList({structureName, structureType,totalSpace, occupiedSpace, color, status, hidden,latitude: this.latLong[0].lat, longitude: this.latLong[0].lng,low, medium, full});
     this.dialogRef.close();
   }
 }

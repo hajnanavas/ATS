@@ -17,7 +17,7 @@ export class MapsComponent implements AfterViewInit {
   constructor(private mapService: MapService, private structureService: StructureService) { }
 
   ngAfterViewInit() {
-    this.structureService.getStructureList().subscribe(structures => { this.structureArray = structures; this.getMap() });
+    this.structureService.getStructureList().subscribe(data => { this.structureArray = data; this.getMap() });
   }
 
   getMap() {
@@ -31,11 +31,15 @@ export class MapsComponent implements AfterViewInit {
   }
 
   onChange(value) {
-    if (value.checked === false)
-      this.structureArray = this.structureArray.filter(item => item.hidden == false)
+    if (value.checked === false) {
+    this.structureArray = this.structureArray.filter(item => item.hidden == "false");
+      this.mapService.plotLocation(this.structureArray);
+    }
     else
-      this.structureService.getStructureList().subscribe(structures => this.structureArray = structures);
-    this.mapService.plotLocation(this.structureArray);
+      this.structureService.getStructureList().subscribe(data => {
+      this.structureArray = data;
+        this.mapService.plotLocation(this.structureArray);
+      });
   }
   closeSearch() {
     (<HTMLInputElement>document.getElementById('pac-input')).value = '';

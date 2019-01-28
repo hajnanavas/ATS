@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material';
 
 import { StructureCreateComponent } from '../structure-create/structure-create.component';
 import { StructureService } from 'src/app/shared/services/structure.service';
-import { Structure } from 'src/app/shared/services/structure.interface';
+// import { Structure } from 'src/app/shared/services/structure.interface';
 
 @Component({
   selector: 'app-structure-list',
@@ -11,14 +11,14 @@ import { Structure } from 'src/app/shared/services/structure.interface';
   styleUrls: ['./structure-list.component.scss']
 })
 export class StructureListComponent implements OnInit {
-
-  structures: Structure[];
+ // structures: Structure[];
+  structures: any = [];
 
   constructor(public dialog: MatDialog, private structureService: StructureService) {
   }
 
   ngOnInit() {
-    this.structureService.getStructureList().subscribe(structures => this.structures = structures);
+    this.structureService.getStructureList().subscribe(data => this.structures = data);
   }
 
   goToAddStructure() {
@@ -28,8 +28,8 @@ export class StructureListComponent implements OnInit {
   }
   onChange(value) {
     if (value.checked === false)
-      this.structures = this.structures.filter(item => item.hidden == false)
+      this.structures = this.structures.filter(item => item.hidden == "false")
     else
-      this.structureService.getStructureList().subscribe(structures => this.structures = structures);
+      this.structureService.getStructureList().subscribe(data => this.structures = data);
   }
 }

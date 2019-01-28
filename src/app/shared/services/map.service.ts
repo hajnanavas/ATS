@@ -37,7 +37,7 @@ export class MapService {
       this.infowindow = new google.maps.InfoWindow();
 
       structureArray.forEach(item => {
-        this.statusColor = item.occupiedSpace > item.low ? (item.occupiedSpace > item.medium ? (item.occupiedSpace > item.full ? 'ff0000' : '009900') : "009900") : "e7ea13";
+        this.statusColor = item.occupied_space > item.low ? (item.occupied_space > item.medium ? (item.occupied_space > item.full ? 'ff0000' : '009900') : "009900") : "e7ea13";
         var pinImage = new google.maps.MarkerImage("http://www.googlemapsmarkers.com/v1/" + this.statusColor + "/");
         this.marker = new google.maps.Marker({
           position: new google.maps.LatLng(item.latitude, item.longitude),

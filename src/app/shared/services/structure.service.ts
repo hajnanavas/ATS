@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Structure } from './structure.interface';
 import { Observable, BehaviorSubject } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class StructureService {
@@ -78,15 +79,18 @@ export class StructureService {
   _form: BehaviorSubject<Structure[]>;
 
 
-  constructor() {
+  constructor(private http:HttpClient) {
     this._form = new BehaviorSubject<Structure[]>(this.structureContent);
   }
 
-  getStructureList(): Observable<Structure[]> {
-    return this._form;
+  getStructureList(): Observable<any> {
+    // return this._form;
+    return this.http.get("http://localhost:3000/structures/getStructures");
   };
 
   updateStructureList(nextState: any) {
-    this._form.next([...this._form.getValue(), ...nextState]);
+    console.log('nextState', nextState);
+    return this.http.post("http://localhost:3000/structures/addStructure",nextState);
+  //  this._form.next([...this._form.getValue(), ...nextState]);
   }
 }

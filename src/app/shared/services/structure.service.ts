@@ -2,102 +2,28 @@ import { Injectable } from '@angular/core';
 
 import { Structure } from './structure.interface';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { map } from 'rxjs/operators';
 
 @Injectable()
 export class StructureService {
-  structureContent: Structure[] = [{
-    structureName: 'ATS State College Parking Lot',
-    structureType: 'Lot',
-    totalSpace: 38,
-    occupiedSpace: 33,
-    color: 'blue',
-    status: 'active',
-    latitude: -33.890542,
-    longitude: 151.274856,
-    hidden: false,
-    low: 16,
-    medium: 25,
-    full: 34
-  },
-  {
-    structureName: 'Space 4',
-    structureType: 'Space',
-    totalSpace: 50,
-    occupiedSpace: 16,
-    color: 'green',
-    status: 'active',
-    latitude: -33.923036,
-    longitude: 151.259052,
-    hidden: true,
-    low: 20,
-    medium: 30,
-    full: 34
-  },
-  {
-    structureName: 'Space 5',
-    structureType: 'Space',
-    totalSpace: 38,
-    occupiedSpace: 38,
-    color: 'green',
-    status: 'inactive',
-    latitude: -34.028249,
-    longitude: 151.157507,
-    hidden: false,
-    low: 26,
-    medium: 30,
-    full: 34
-  },
-  {
-    structureName: 'Space 3',
-    structureType: 'Space',
-    totalSpace: 38,
-    occupiedSpace: 33,
-    color: 'green',
-    status: 'active',
-    latitude: -33.80010128657071,
-    longitude: 151.28747820854187,
-    hidden: false,
-    low: 26,
-    medium: 30,
-    full: 34
-  },
-  {
-    structureName: 'Space 2',
-    structureType: 'Space',
-    totalSpace: 38,
-    occupiedSpace: 33,
-    color: 'green',
-    status: 'inactive',
-    latitude: -33.950198,
-    longitude: 151.259302,
-    hidden: false,
-    low: 26,
-    medium: 30,
-    full: 34
-  }];
-  _form: BehaviorSubject<Structure[]>;
+ 
+  structureListSource: BehaviorSubject<Structure[]>;
+  structureList: Observable<Structure[]>;
+  structureCreateSource: BehaviorSubject<string>;
+  structureCreate: Observable<string>;
 
+  constructor() {
 
-  constructor(private http: HttpClient) {
-    this._form = new BehaviorSubject<Structure[]>(this.structureContent);
+    this.structureListSource = new BehaviorSubject<Structure[]>([]);
+    this.structureList = this.structureListSource.asObservable();
+    this.structureCreateSource = new BehaviorSubject<string>('');
+    this.structureCreate = this.structureCreateSource.asObservable();
   }
 
-  getStructureList(): Observable<any> {
-    // return this._form;
-    return this.http.get<Structure[]>("http://localhost:3000/structures/getStructures");
-  };
-
-  updateStructureList(nextState: any): Observable<any> {
-
-    //  this._form.next([...this._form.getValue(), ...nextState]);
-    return this.http.post("http://localhost:3000/structures/addStructure", nextState, {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    });
-    
-
+  announceStructureCreate(value: string) {
+    this.structureCreateSource.next(value);
+  }
+  
+  announceStructureListUpdate(value: any) {
+    this.structureListSource.next(value);
   }
 }

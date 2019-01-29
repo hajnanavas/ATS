@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { StructureService } from 'src/app/shared/services/structure.service';
 import { MapService } from 'src/app/shared/services/map.service';
@@ -15,12 +16,16 @@ export class StructureCreateComponent implements OnInit {
   private createForm: FormGroup;
   latLong: any = [];
   requestData: any;
+  structureCreateSubscription: any;
 
-  constructor(
-    public dialogRef: MatDialogRef<StructureCreateComponent>,
+  constructor(public dialogRef: MatDialogRef<StructureCreateComponent>,
     private structureService: StructureService,
     private mapService: MapService,
-    private formBuilder: FormBuilder) {
+    private formBuilder: FormBuilder,
+    private http: HttpClient) {
+    this.structureCreateSubscription = this.structureService.structureCreate.subscribe(
+      value => {
+      })
   }
 
   ngOnInit() {
@@ -40,15 +45,12 @@ export class StructureCreateComponent implements OnInit {
       low: ['', Validators.pattern('^[0-9]+$')],
       full: ['', Validators.pattern('^[0-9]+$')]
     });
-
   }
 
   saveStructure() {
-    this.latLong = [];
-    console.log(this.createForm.value);
     this.latLong = this.mapService.getLocation();
     const { structureName, structureType, totalSpace, occupiedSpace, color, status, hidden, low, medium, full } = this.createForm.value;
-    this.requestData = {
+    this.http.post("http://localhost:3000/structures/addStructure", {
       "structureName": structureName,
       "structureType": structureType,
       "totalSpace": totalSpace,
@@ -61,14 +63,11 @@ export class StructureCreateComponent implements OnInit {
       "low": low,
       "medium": medium,
       "full": full
-    }
-    this.structureService.updateStructureList(this.requestData).subscribe((res) => {
-      console.log(res);
+    }, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }).subscribe((res) => {
+      this.structureService.announceStructureListUpdate(res);
     },
       err => console.log(err)
-    );;
-
-    // this.structureService.updateStructureList({ structureName, structureType, totalSpace, occupiedSpace, color, status, hidden, latitude: this.latLong[0].lat, longitude: this.latLong[0].lng, low, medium, full });
+    );
     this.dialogRef.close();
   }
 }

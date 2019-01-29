@@ -1,7 +1,9 @@
 import { Component, Input, AfterViewInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 import { MapService } from '../../services/map.service';
 import { StructureService } from '../../services/structure.service';
+import { Structure } from '../../services/structure.interface';
 
 @Component({
   selector: 'app-maps',
@@ -13,34 +15,39 @@ export class MapsComponent implements AfterViewInit {
   @Input() mapPage: string;
 
   structureArray: any[];
+  structureListSubscription: any;
 
-  constructor(private mapService: MapService, private structureService: StructureService) { }
+  constructor(private mapService: MapService, private structureService: StructureService, private http: HttpClient) {
+    this.structureListSubscription = this.structureService.structureList.subscribe(
+      value => {
+        this.getStructureList();
+      })
+  }
 
   ngAfterViewInit() {
-    this.structureService.getStructureList().subscribe(data => { this.structureArray = data; this.getMap() });
+    this.getStructureList();
+  }
+
+  getStructureList() {
+    this.http.get<Structure[]>("http://localhost:3000/structures/getStructures").subscribe(data => { this.structureArray = data; this.getMap() });
   }
 
   getMap() {
-
     if (this.mapPage == 'list')
       this.mapService.plotLocation(this.structureArray);
-    else {
+    else
       this.mapService.searchLocation(document.getElementById('pac-input'));
-    }
-
   }
 
   onChange(value) {
     if (value.checked === false) {
-    this.structureArray = this.structureArray.filter(item => item.hidden == "false");
+      this.structureArray = this.structureArray.filter(item => item.hidden == "false");
       this.mapService.plotLocation(this.structureArray);
     }
     else
-      this.structureService.getStructureList().subscribe(data => {
-      this.structureArray = data;
-        this.mapService.plotLocation(this.structureArray);
-      });
+      this.getStructureList();
   }
+
   closeSearch() {
     (<HTMLInputElement>document.getElementById('pac-input')).value = '';
     this.mapService.deleteMarkers();

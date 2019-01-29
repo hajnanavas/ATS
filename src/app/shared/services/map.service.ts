@@ -26,7 +26,7 @@ export class MapService {
   }
 
   plotLocation(structureArray) {
-    
+
     var i;
     this.loaderService.load('map').then(res => {
       this.map = new google.maps.Map(document.getElementById('map'), {
@@ -37,7 +37,7 @@ export class MapService {
       this.infowindow = new google.maps.InfoWindow();
 
       structureArray.forEach(item => {
-        this.statusColor = item.occupied_space > item.low ? (item.occupied_space > item.medium ? (item.occupied_space > item.full ? 'ff0000' : '009900') : "009900") : "e7ea13";
+        this.statusColor = item.occupied_space >= item.medium ? (item.occupied_space >= item.full ? 'ff0000' : '009900') : "e7ea13";
         var pinImage = new google.maps.MarkerImage("http://www.googlemapsmarkers.com/v1/" + this.statusColor + "/");
         this.marker = new google.maps.Marker({
           position: new google.maps.LatLng(item.latitude, item.longitude),
@@ -88,7 +88,7 @@ export class MapService {
   }
 
   searchLocation(input) {
-    
+
     this.loaderService.load('map').then(res => {
       this.maps = new google.maps.Map(document.getElementById('mapCase'), {
         center: { lat: -34.397, lng: 150.644 },
@@ -139,7 +139,7 @@ export class MapService {
     })
   }
 
-  deleteMarkers(){
+  deleteMarkers() {
     if (this.markers != null) {
       this.markers.setMap(null);
       this.markers = null;

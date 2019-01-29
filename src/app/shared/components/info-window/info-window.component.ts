@@ -11,8 +11,8 @@ export class InfoWindowComponent implements OnInit {
 
   constructor() {
   }
-  
+
   ngOnInit() {
-    this.strokeColor = (this.param.occupiedSpace > this.param.low ? (this.param.occupiedSpace > this.param.medium ? (this.param.occupiedSpace > this.param.full ?  '#ff0000' : '#009900') : '#009900') : '#e7ea13');
+    this.strokeColor = (this.param.occupied_space >= this.param.medium ? (this.param.occupied_space >= this.param.full ? '#ff0000' : '#009900') : '#e7ea13');
   }
 }

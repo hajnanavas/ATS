@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 
 import { Structure } from './structure.interface';
 import { Observable, BehaviorSubject } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { map } from 'rxjs/operators';
 
 @Injectable()
 export class StructureService {
@@ -79,18 +80,24 @@ export class StructureService {
   _form: BehaviorSubject<Structure[]>;
 
 
-  constructor(private http:HttpClient) {
+  constructor(private http: HttpClient) {
     this._form = new BehaviorSubject<Structure[]>(this.structureContent);
   }
 
   getStructureList(): Observable<any> {
     // return this._form;
-    return this.http.get("http://localhost:3000/structures/getStructures");
+    return this.http.get<Structure[]>("http://localhost:3000/structures/getStructures");
   };
 
-  updateStructureList(nextState: any) {
-    console.log('nextState', nextState);
-    return this.http.post("http://localhost:3000/structures/addStructure",nextState);
-  //  this._form.next([...this._form.getValue(), ...nextState]);
+  updateStructureList(nextState: any): Observable<any> {
+
+    //  this._form.next([...this._form.getValue(), ...nextState]);
+    return this.http.post("http://localhost:3000/structures/addStructure", nextState, {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    });
+    
+
   }
 }

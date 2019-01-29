@@ -4,7 +4,6 @@ import { MatInputModule, MatFormFieldModule, MatIconModule, MatSlideToggleModule
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { MapsComponent } from './components/maps/maps.component';
-import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [MapsComponent],
@@ -16,8 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatSlideToggleModule,
     FormsModule,
     ReactiveFormsModule,
-    HttpClientModule
   ],
-  exports: [MapsComponent,HttpClientModule],
+  exports: [MapsComponent],
 })
 export class SharedModule { }

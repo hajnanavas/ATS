@@ -14,6 +14,7 @@ export class StructureCreateComponent implements OnInit {
 
   private createForm: FormGroup;
   latLong: any = [];
+  requestData: any;
 
   constructor(
     public dialogRef: MatDialogRef<StructureCreateComponent>,
@@ -43,10 +44,31 @@ export class StructureCreateComponent implements OnInit {
   }
 
   saveStructure() {
+    this.latLong = [];
     console.log(this.createForm.value);
     this.latLong = this.mapService.getLocation();
-    const { structureName, structureType, totalSpace, occupiedSpace, color, status, hidden, low, medium, full } =this.createForm.value;
-    this.structureService.updateStructureList({structureName, structureType,totalSpace, occupiedSpace, color, status, hidden,latitude: this.latLong[0].lat, longitude: this.latLong[0].lng,low, medium, full});
+    const { structureName, structureType, totalSpace, occupiedSpace, color, status, hidden, low, medium, full } = this.createForm.value;
+    this.requestData = {
+      "structureName": structureName,
+      "structureType": structureType,
+      "totalSpace": totalSpace,
+      "occupiedSpace": occupiedSpace,
+      "color": color,
+      "status": status,
+      "hidden": hidden,
+      "latitude": this.latLong[0].lat,
+      "longitude": this.latLong[0].lng,
+      "low": low,
+      "medium": medium,
+      "full": full
+    }
+    this.structureService.updateStructureList(this.requestData).subscribe((res) => {
+      console.log(res);
+    },
+      err => console.log(err)
+    );;
+
+    // this.structureService.updateStructureList({ structureName, structureType, totalSpace, occupiedSpace, color, status, hidden, latitude: this.latLong[0].lat, longitude: this.latLong[0].lng, low, medium, full });
     this.dialogRef.close();
   }
 }

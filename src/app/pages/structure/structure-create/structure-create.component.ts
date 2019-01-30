@@ -57,7 +57,7 @@ export class StructureCreateComponent implements OnInit {
       "occupiedSpace": occupiedSpace,
       "color": color,
       "status": status,
-      "hidden": hidden,
+      "hidden": hidden ? 'true' : 'false',
       "latitude": this.latLong[0].lat,
       "longitude": this.latLong[0].lng,
       "low": low,

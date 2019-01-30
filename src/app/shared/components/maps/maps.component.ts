@@ -40,7 +40,7 @@ export class MapsComponent implements AfterViewInit {
   }
 
   onChange(value) {
-    if (value.checked === false) {
+    if (!value.checked) {
       this.structureArray = this.structureArray.filter(item => item.hidden == "false");
       this.mapService.plotLocation(this.structureArray);
     }

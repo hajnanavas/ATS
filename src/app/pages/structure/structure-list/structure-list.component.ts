@@ -37,7 +37,7 @@ export class StructureListComponent implements OnInit {
     });
   }
   onChange(value) {
-    if (value.checked === false)
+    if (!value.checked)
       this.structures = this.structures.filter(item => item.hidden == "false")
     else
       this.getStructureList();

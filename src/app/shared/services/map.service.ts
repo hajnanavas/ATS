@@ -22,6 +22,9 @@ export class MapService {
   marker: any;
   maps: any;
   markers: any;
+  latPositon: any;
+  longPosition: any;
+
   constructor(private loaderService: LoaderService, private zone: NgZone, private resolver: ComponentFactoryResolver, private injector: Injector, private appRef: ApplicationRef) {
   }
 
@@ -29,9 +32,11 @@ export class MapService {
 
     var i;
     this.loaderService.load('map').then(res => {
+      this.latPositon = structureArray.length > 0 ? structureArray[0].latitude : -34.397;
+      this.longPosition = structureArray.length > 0 ? structureArray[0].longitude : 150.644;
       this.map = new google.maps.Map(document.getElementById('map'), {
         zoom: 10,
-        center: new google.maps.LatLng(structureArray[0].latitude, structureArray[0].longitude),
+        center: new google.maps.LatLng(this.latPositon, this.longPosition),
         mapTypeId: google.maps.MapTypeId.ROADMAP
       });
       this.infowindow = new google.maps.InfoWindow();

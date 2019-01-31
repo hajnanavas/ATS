@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { StructureService } from 'src/app/shared/services/structure.service';
 import { MapService } from 'src/app/shared/services/map.service';
+import { ApiService } from 'src/app/shared/services/api.service';
 
 @Component({
   selector: 'app-structure-create',
@@ -22,7 +22,7 @@ export class StructureCreateComponent implements OnInit {
     private structureService: StructureService,
     private mapService: MapService,
     private formBuilder: FormBuilder,
-    private http: HttpClient) {
+    private apiService: ApiService) {
     this.structureCreateSubscription = this.structureService.structureCreate.subscribe(
       value => {
       })
@@ -50,7 +50,7 @@ export class StructureCreateComponent implements OnInit {
   saveStructure() {
     this.latLong = this.mapService.getLocation();
     const { structureName, structureType, totalSpace, occupiedSpace, color, status, hidden, low, medium, full, abbreviatedName, description, note } = this.createForm.value;
-    this.http.post("http://localhost:3000/structures/addStructure", {
+    const reqData = {
       "structureName": structureName,
       "structureType": structureType,
       "totalSpace": totalSpace,
@@ -66,7 +66,8 @@ export class StructureCreateComponent implements OnInit {
       "abbreviatedName": abbreviatedName,
       "description": description,
       "note": note
-    }, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }).subscribe((res) => {
+    }
+    this.apiService.addStructure(reqData).subscribe((res) => {
       this.structureService.announceStructureListUpdate(res);
     },
       err => console.log(err)

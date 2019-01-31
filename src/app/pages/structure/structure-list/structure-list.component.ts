@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
-import { HttpClient } from '@angular/common/http';
 
 import { StructureCreateComponent } from '../structure-create/structure-create.component';
 import { StructureService } from 'src/app/shared/services/structure.service';
-import { Structure } from 'src/app/shared/services/structure.interface';
+import { ApiService } from 'src/app/shared/services/api.service';
 
 @Component({
   selector: 'app-structure-list',
@@ -15,7 +14,7 @@ export class StructureListComponent implements OnInit {
   structures: any = [];
   userListSubscription: any;
 
-  constructor(public dialog: MatDialog, private structureService: StructureService, private http: HttpClient) {
+  constructor(public dialog: MatDialog, private structureService: StructureService, private apiService:ApiService) {
     this.userListSubscription = this.structureService.structureList.subscribe(
       value => {
         this.getStructureList();
@@ -27,7 +26,7 @@ export class StructureListComponent implements OnInit {
   }
 
   getStructureList() {
-    this.http.get<Structure[]>("http://localhost:3000/structures/getStructures").subscribe(data => this.structures = data);
+    this.apiService.getStructures().subscribe(data => this.structures = data);
   };
 
   goToAddStructure() {

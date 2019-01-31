@@ -1,9 +1,8 @@
 import { Component, Input, AfterViewInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
 import { MapService } from '../../services/map.service';
 import { StructureService } from '../../services/structure.service';
-import { Structure } from '../../services/structure.interface';
+import { ApiService } from '../../services/api.service';
 
 @Component({
   selector: 'app-maps',
@@ -17,7 +16,7 @@ export class MapsComponent implements AfterViewInit {
   structureArray: any[];
   structureListSubscription: any;
 
-  constructor(private mapService: MapService, private structureService: StructureService, private http: HttpClient) {
+  constructor(private mapService: MapService, private structureService: StructureService, private apiService: ApiService) {
     this.structureListSubscription = this.structureService.structureList.subscribe(
       value => {
         this.getStructureList();
@@ -29,7 +28,7 @@ export class MapsComponent implements AfterViewInit {
   }
 
   getStructureList() {
-    this.http.get<Structure[]>("http://localhost:3000/structures/getStructures").subscribe(data => { this.structureArray = data; this.getMap() });
+    this.apiService.getStructures().subscribe(data => { this.structureArray = data; this.getMap() })
   }
 
   getMap() {

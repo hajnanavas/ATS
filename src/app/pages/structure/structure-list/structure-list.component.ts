@@ -42,4 +42,9 @@ export class StructureListComponent implements OnInit {
     else
       this.getStructureList();
   }
+
+  trackByFn(index, item) {
+    return item.id;
+  }
+  
 }

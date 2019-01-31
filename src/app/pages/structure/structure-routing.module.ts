@@ -4,14 +4,10 @@ import { StructureListComponent } from './structure-list/structure-list.componen
 
 const routes: Routes = [{
   path: 'structures',
-  children: [
-    { path: 'list', component: StructureListComponent },
-    { path: '', redirectTo: 'list', pathMatch: 'full' },
-    { path: '**', redirectTo: 'list', pathMatch: 'full' }
-  ]
-  },
-  { path: '', redirectTo: 'structures', pathMatch: 'full' },
-  { path: '**', redirectTo: 'structures', pathMatch: 'full' }];
+  component: StructureListComponent
+},
+{ path: '', redirectTo: 'structures', pathMatch: 'full' },
+{ path: '**', redirectTo: 'structures', pathMatch: 'full' }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],

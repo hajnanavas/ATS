@@ -34,7 +34,7 @@
     </div>
     <div class="content">
       <ul class="structure">
-        <li *ngFor="let item of structures">
+        <li *ngFor="let item of structures; trackBy: trackByFn">
           <span class="colorSet color-{{item.color}}"></span>
           <span class="badge detls"><a>{{item.structure_name}} - {{item.structure_type}}</a></span>
           <span class="{{item.occupied_space>=item.medium?(item.occupied_space>=item.full?'badge space full': 'badge space medium'):'badge space low'}}">{{item.occupied_space}}/{{item.total_space}}</span>

@@ -49,7 +49,7 @@ export class StructureCreateComponent implements OnInit {
 
   saveStructure() {
     this.latLong = this.mapService.getLocation();
-    const { structureName, structureType, totalSpace, occupiedSpace, color, status, hidden, low, medium, full } = this.createForm.value;
+    const { structureName, structureType, totalSpace, occupiedSpace, color, status, hidden, low, medium, full, abbreviatedName, description, note } = this.createForm.value;
     this.http.post("http://localhost:3000/structures/addStructure", {
       "structureName": structureName,
       "structureType": structureType,
@@ -62,7 +62,10 @@ export class StructureCreateComponent implements OnInit {
       "longitude": this.latLong[0].lng,
       "low": low,
       "medium": medium,
-      "full": full
+      "full": full,
+      "abbreviatedName": abbreviatedName,
+      "description": description,
+      "note": note
     }, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) }).subscribe((res) => {
       this.structureService.announceStructureListUpdate(res);
     },

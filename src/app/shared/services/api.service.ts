@@ -8,7 +8,7 @@ import { Structure } from 'src/app/shared/services/structure.interface';
 })
 export class ApiService {
 
-  apiURL: string = 'http://localhost:3000/structures/';
+  apiURL: string = 'http://localhost:3000/structures';
 
   constructor(private http: HttpClient) { }
 

@@ -1,0 +1,54 @@
+<div class="structurePage">
+  <div class="page-path">
+    <p>All Traffic Solutions Developer Account - Home / Parking / Structure</p>
+  </div>
+  <div id='list-sections'>
+    <div id='header'>
+      <button class="parking-logo" mat-mini-fab color="warn">P</button>
+      <h4> Structures</h4>
+      <div class='btnGrp'>
+        <mat-icon>refresh</mat-icon>
+        <mat-icon>minimize</mat-icon>
+        <mat-icon>fullscreen</mat-icon>
+      </div>
+    </div>
+    <app-maps mapPage='list'></app-maps>
+  </div>
+
+  <div id='list-sections'>
+    <div id='header'>
+      <button class="parking-logo" mat-mini-fab color="warn">P</button>
+      <h4>Structures</h4>
+      <div class='btnGrp'>
+        <mat-icon>refresh</mat-icon>
+        <mat-icon>minimize</mat-icon>
+        <mat-icon>fullscreen</mat-icon>
+      </div>
+    </div>
+    <div class='btn'>
+      <button class="addBtn" mat-raised-button (click)="goToAddStructure()">+</button>
+    </div>
+    <div class="content-filter">
+      <label>Show Hidden: </label>
+      <mat-slide-toggle (change)="onChange($event)" [checked]="true"></mat-slide-toggle>
+    </div>
+    <div class="content">
+      <ul class="structure">
+        <li *ngFor="let item of structures; trackBy: trackByFn">
+          <span class="colorSet color-{{item.color}}"></span>
+          <span class="badge detls"><a>{{item.structure_name}} - {{item.structure_type}}</a></span>
+          <span class="{{item.occupied_space>=item.medium?(item.occupied_space>=item.full?'badge space full': 'badge space medium'):'badge space low'}}">{{item.occupied_space}}/{{item.total_space}}</span>
+          <span class="delete">
+            <mat-icon (click)="goToAddStructure(item)">add</mat-icon>
+          </span>
+          <span class="delete">
+            <mat-icon>settings</mat-icon>
+          </span>
+          <span class="delete no-line">
+            <mat-icon>fullscreen</mat-icon>
+          </span>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

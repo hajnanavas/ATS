@@ -1,0 +1,77 @@
+.leftData{
+    width:45%;
+    float:left;
+    margin-right:2%;
+}
+.rightData{
+    width:49%;
+    float:left
+}
+.formContent{
+    border:1px solid rgba(60,64,67,0.15);
+    margin-bottom:5%;
+    border-radius: 4px;
+    padding-bottom: 20px;
+}
+.availability{
+    border:1px solid rgba(60,64,67,0.15);
+    border-radius: 4px;
+}
+ul{
+    list-style-type: none;
+}
+
+.mat-form-field-appearance-legacy
+    {  
+        .mat-form-field-wrapper {
+            padding-bottom: 0.8em !important;
+    }
+}
+.setWidth{
+    width: 30%;
+    display: inline-block;
+}
+
+.formlabel {
+    padding-top: 8px;
+    margin-right: 10px;
+   
+}
+.setSpan {
+    width: 100px;
+    display: inline-block;
+}
+.butn-green{
+    background-color: green ;
+    border-radius: 4px;
+    height: 30px;
+    border-color: green;
+    color: white !important;
+    margin:5px;
+}
+.btn{
+    border-radius: 4px;
+    height: 30px;
+    margin:5px;
+
+    background-color: gray ;
+    border-radius: 4px;
+    height: 30px;
+    border-color: gray;
+    color: black !important;
+}
+.buttn{
+    float:right;
+    width: 100%;
+    margin-top: 2%;
+    border-top: 1px solid rgba(60, 64, 67, 0.15);
+
+}
+#mapCase {
+    width: 100%;
+    height: 500px;
+    background-color: white;
+  }
+.form-hidden{
+    padding-top:30px;
+}

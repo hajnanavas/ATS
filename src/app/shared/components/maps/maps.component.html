@@ -1,0 +1,23 @@
+<div *ngIf="mapPage == 'list'" class="map-content">
+    <div class="content-filter">
+        <label>Show Hidden: </label>
+        <mat-slide-toggle (change)="onChange($event)" [checked]="true"></mat-slide-toggle>
+    </div>
+    <div class="content">
+        <div id='map'></div>
+    </div>
+</div>
+<div *ngIf="mapPage == 'create'">
+    <div class='searchBox'>
+        <mat-icon>search</mat-icon>
+        <div class="search-input">
+            <mat-form-field>
+                <input id="pac-input" matInput class="controls" type="text" placeholder="Search Locations">
+            </mat-form-field>
+        </div>
+        <mat-icon class="cls-search" (click)="closeSearch()">close</mat-icon>
+    </div>
+    <div class="mapContent">
+        <div id='mapCase'></div>
+    </div>
+</div>

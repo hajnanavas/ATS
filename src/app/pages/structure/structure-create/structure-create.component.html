@@ -1,0 +1,129 @@
+<h1 mat-dialog-title>{{title}}</h1>
+<div mat-dialog-content>
+  <form [formGroup]="createForm">
+    <div class="leftData">
+      <app-maps mapPage='create'></app-maps>
+    </div>
+    <div class="rightData">
+      <div class='formContent'>
+
+        <ul>
+          <li>
+            <label class="formlabel"><span class="setWidth">Structure Name</span> : </label>
+            <mat-form-field>
+              <input matInput formControlName="structureName">
+              <mat-error *ngIf="createForm.controls.structureName.invalid">enter the structure name</mat-error>
+            </mat-form-field>
+
+          </li>
+          <li>
+            <label class="formlabel"><span class="setWidth">Structure Type</span> : </label>
+            <mat-form-field>
+              <mat-select formControlName="structureType">
+                <mat-option value="Lot">Lot
+                </mat-option>
+                <mat-option value="Space">Space
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </li>
+          <li>
+            <label class="formlabel"><span class="setWidth">Abbreviated Name</span> : </label>
+            <mat-form-field>
+              <input matInput formControlName="abbreviatedName">
+            </mat-form-field>
+          </li>
+          <li>
+            <label class="formlabel"><span class="setWidth">Color</span> :</label>
+            <mat-form-field>
+              <mat-select formControlName="color">
+                <mat-option value="green">Green
+                </mat-option>
+                <mat-option value="red">Red
+                </mat-option>
+                <mat-option value="blue">Blue
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </li>
+          <li>
+            <label class="formlabel"><span class="setWidth">Status</span> :</label>
+            <mat-form-field>
+              <mat-select formControlName="status">
+                <mat-option value="active">Active
+                </mat-option>
+                <mat-option value="inactive">Inactive
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </li>
+          <li>
+            <label class="formlabel"><span class="setWidth">Total Spaces</span> : </label>
+            <mat-form-field>
+              <input matInput formControlName="totalSpace">
+              <mat-error *ngIf="createForm.controls.totalSpace.invalid">enter a number</mat-error>
+            </mat-form-field>
+          </li>
+          <li>
+            <label class="formlabel"><span class="setWidth">Occupied Space</span> : </label>
+            <mat-form-field>
+              <input matInput formControlName="occupiedSpace">
+              <mat-error *ngIf="createForm.controls.occupiedSpace.invalid">enter a number</mat-error>
+            </mat-form-field>
+          </li>
+          <li class="form-hidden">
+            <label class="formlabel"><span class="setWidth">Hidden</span> : </label>
+            <mat-slide-toggle formControlName="hidden"></mat-slide-toggle>
+          </li>
+          <li>
+            <label class="formlabel"><span class="setWidth">Description</span> :</label>
+            <mat-form-field>
+              <textarea matInput formControlName="description"></textarea>
+            </mat-form-field>
+          </li>
+          <li>
+            <label class="formlabel"><span class="setWidth">Note</span> : </label>
+            <mat-form-field>
+              <textarea matInput formControlName="note"></textarea>
+            </mat-form-field>
+          </li>
+        </ul>
+      </div>
+      <div class="availability">
+        <ul>
+          <li>
+            <label class="formlabel"><span>Structure Availability</span> : </label>
+          </li>
+          <li>
+            <label class="formlabel"><span class="setSpan">Medium When </span>: </label>
+            <mat-form-field>
+              <input matInput formControlName="medium">
+              <mat-error *ngIf="createForm.controls.medium.invalid">enter a number</mat-error>
+            </mat-form-field>
+            <label>spaces remain</label>
+          </li>
+          <li>
+            <label class="formlabel"><span class="setSpan">Low When</span> :</label>
+            <mat-form-field>
+              <input matInput formControlName="low">
+              <mat-error *ngIf="createForm.controls.low.invalid">enter a number</mat-error>
+            </mat-form-field>
+            <label>spaces remain</label>
+          </li>
+          <li>
+            <label class="formlabel"><span class="setSpan">Full When </span>: </label>
+            <mat-form-field>
+              <input matInput formControlName="full">
+              <mat-error *ngIf="createForm.controls.full.invalid">enter a number</mat-error>
+            </mat-form-field>
+            <label>spaces remain</label>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions class="buttn">
+  <button mat-button class="btn" [mat-dialog-close]="asa" cdkFocusInitial>Cancel</button>
+  <button mat-button class="butn-green" [disabled]='createForm.invalid'(click)="saveStructure()">Save Structure</button>
+</div>

@@ -14,7 +14,7 @@ export class StructureListComponent implements OnInit {
   structures: any = [];
   userListSubscription: any;
 
-  constructor(public dialog: MatDialog, private structureService: StructureService, private apiService:ApiService) {
+  constructor(public dialog: MatDialog, private structureService: StructureService, private apiService: ApiService) {
     this.userListSubscription = this.structureService.structureList.subscribe(
       value => {
         this.getStructureList();
@@ -29,9 +29,10 @@ export class StructureListComponent implements OnInit {
     this.apiService.getStructures().subscribe(data => this.structures = data);
   };
 
-  goToAddStructure() {
+  goToAddStructure(item) {
     this.structureService.announceStructureCreate('Structure_Create');
     const dialogRef = this.dialog.open(StructureCreateComponent, {
+      data: item ? item : '',
       width: '1000px',
     });
   }
@@ -45,5 +46,5 @@ export class StructureListComponent implements OnInit {
   trackByFn(index, item) {
     return item.id;
   }
-  
+
 }

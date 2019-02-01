@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material';
+import { Component, OnInit, Inject } from '@angular/core';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
 
 import { StructureService } from 'src/app/shared/services/structure.service';
@@ -17,8 +17,10 @@ export class StructureCreateComponent implements OnInit {
   latLong: any = [];
   requestData: any;
   structureCreateSubscription: any;
+  title: string;
 
   constructor(public dialogRef: MatDialogRef<StructureCreateComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any,
     private structureService: StructureService,
     private mapService: MapService,
     private formBuilder: FormBuilder,
@@ -26,6 +28,7 @@ export class StructureCreateComponent implements OnInit {
     this.structureCreateSubscription = this.structureService.structureCreate.subscribe(
       value => {
       })
+    this.title = this.data.id ? 'Add Sub Structure' : 'Add Structure'
   }
 
   ngOnInit() {
@@ -65,7 +68,8 @@ export class StructureCreateComponent implements OnInit {
       "full": full,
       "abbreviatedName": abbreviatedName,
       "description": description,
-      "note": note
+      "note": note,
+      "structureId": this.data.id ? this.data.id : ''
     }
     this.apiService.addStructure(reqData).subscribe((res) => {
       this.structureService.announceStructureListUpdate(res);

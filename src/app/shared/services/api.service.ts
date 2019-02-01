@@ -9,6 +9,7 @@ import { Structure } from 'src/app/shared/services/structure.interface';
 export class ApiService {
 
   apiURL: string = 'http://localhost:3000/structures';
+  api: string;
 
   constructor(private http: HttpClient) { }
 
@@ -17,6 +18,7 @@ export class ApiService {
   }
 
   addStructure(reqData) {
-    return this.http.post(`${this.apiURL}/addStructure`, reqData, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) });
+    this.api = reqData.structureId ? '/addSubStructure' : '/addStructure';
+    return this.http.post(`${this.apiURL}${this.api}`, reqData, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) });
   }
 }

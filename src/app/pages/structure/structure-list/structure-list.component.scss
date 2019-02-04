@@ -179,3 +179,16 @@ span {
     top: 12%;
     left: 2%;
 }
+.icn{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    float: left;
+    top: -7px;
+    height: 15px;
+    border-radius: 4px 0 0 4px;
+    margin-right: -8%;
+    width: 10%;
+    .mat-icon{
+        margin-top: -5px;
+    }
+}
